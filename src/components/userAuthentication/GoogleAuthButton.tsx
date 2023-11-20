@@ -14,6 +14,7 @@ const GoogleAuthButton = () => {
         console.log('signing in new user');
         const newUser: User = {
           id: authResult.user.uid,
+          email: authResult.user.email || '',
           isAdmin: false,
         }
         postUser(newUser);
