@@ -6,8 +6,8 @@ import HomePage from './pages/HomePage';
 import ProductsPage from './pages/ProductsPage';
 import ProfilePage from './pages/ProfilePage';
 import ProtectedRoutes from './components/ProtectedRoutes';
-import GoogleAuthButton from './components/userAuthentication/GoogleAuthButton';
-import SignOutButton from './components/userAuthentication/SignOutButton';
+import Navbar from './components/Navbar';
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyBpHcUmLa0dy7AtEKrVICURN4oxHS0jTZA",
@@ -26,16 +26,7 @@ function App() {
 
   return (
     <>
-      <nav>
-        <h1>ProductPal</h1>
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="products">Products</a></li>
-          <li><a href="/profile">Profile</a></li>
-        </ul>
-        <GoogleAuthButton />
-        <SignOutButton />
-      </nav>
+      <Navbar />
       <Router>
         <Routes>
           <Route path='/' element={<HomePage />} />
