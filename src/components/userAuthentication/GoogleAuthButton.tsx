@@ -20,6 +20,7 @@ const GoogleAuthButton = () => {
       } else console.log('signing in existing user')
     } catch (error) {
       console.log('failed to sign in with Google', error);
+      throw error;
     }
   }
 
