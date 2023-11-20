@@ -15,7 +15,7 @@ const firebaseConfig = {
   projectId: "pracowniaprogramowania-792db",
   storageBucket: "pracowniaprogramowania-792db.appspot.com",
   messagingSenderId: "742625012766",
-  appId: "1:742625012766:web:0364cb36d4adad8cc0520f"
+  appId: "1:742625012766:web:90f6ea94880f4e87c0520f"
 };
 
 const app = initializeApp(firebaseConfig);
