@@ -1,7 +1,13 @@
-import './App.css'
 import { initializeApp } from 'firebase/app'
 import { getAuth } from 'firebase/auth'
 import { getFirestore } from 'firebase/firestore'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import Products from './pages/Products';
+import Profile from './pages/Profile';
+import ProtectedRoutes from './components/ProtectedRoutes';
+import GoogleAuthButton from './components/userAuthentication/googleAuthButton';
+import SignOutButton from './components/userAuthentication/SignOutButton';
 
 const firebaseConfig = {
   apiKey: "AIzaSyBpHcUmLa0dy7AtEKrVICURN4oxHS0jTZA",
@@ -18,17 +24,27 @@ export const db = getFirestore(app);
 
 function App() {
 
-  async function getUser() {
-    const user = await auth.currentUser;
-    console.log('hello', user);
-  }
-
   return (
     <>
-      <div>
-        <h1>Pracowania Programowania</h1>
-        <button onClick={getUser}>Click me!</button>
-      </div>
+      <nav>
+        <h1>ProductPal</h1>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="products">Products</a></li>
+          <li><a href="/profile">Profile</a></li>
+        </ul>
+        <GoogleAuthButton />
+        <SignOutButton />
+      </nav>
+      <Router>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/products' element={<Products />} />
+          <Route element={<ProtectedRoutes />}>
+            <Route path='/profile' element={<Profile />} />
+          </Route>
+        </Routes>
+      </Router>
     </>
   )
 }
