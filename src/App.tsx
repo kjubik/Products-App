@@ -38,10 +38,10 @@ function App() {
       </nav>
       <Router>
         <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/products' element={<Products />} />
+          <Route path='/' element={<HomePage />} />
+          <Route path='/products' element={<ProductsPage />} />
           <Route element={<ProtectedRoutes />}>
-            <Route path='/profile' element={<Profile />} />
+            <Route path='/profile' element={<ProfilePage />} />
           </Route>
         </Routes>
       </Router>
