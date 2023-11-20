@@ -2,11 +2,11 @@ import { initializeApp } from 'firebase/app'
 import { getAuth } from 'firebase/auth'
 import { getFirestore } from 'firebase/firestore'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';
-import Products from './pages/Products';
-import Profile from './pages/Profile';
+import HomePage from './pages/HomePage';
+import ProductsPage from './pages/ProductsPage';
+import ProfilePage from './pages/ProfilePage';
 import ProtectedRoutes from './components/ProtectedRoutes';
-import GoogleAuthButton from './components/userAuthentication/googleAuthButton';
+import GoogleAuthButton from './components/userAuthentication/GoogleAuthButton';
 import SignOutButton from './components/userAuthentication/SignOutButton';
 
 const firebaseConfig = {
