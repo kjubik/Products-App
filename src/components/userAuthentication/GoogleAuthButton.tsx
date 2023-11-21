@@ -1,10 +1,12 @@
 import { getAdditionalUserInfo, getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { User } from "../../firestore/types";
 import { postUser } from "../../firestore/utils";
+import { useNavigate } from "react-router-dom";
 
 const GoogleAuthButton = () => {
   const auth = getAuth();
   const provider = new GoogleAuthProvider();
+  const navigate = useNavigate();
 
   const authWithGoogle = async () => {
     try {
@@ -17,8 +19,10 @@ const GoogleAuthButton = () => {
           email: authResult.user.email || '',
           isAdmin: false,
         }
-        postUser(newUser);
+        await postUser(newUser);
       } else console.log('signing in existing user')
+
+      navigate('/profile');
     } catch (error) {
       console.log('failed to sign in with Google', error);
       throw error;

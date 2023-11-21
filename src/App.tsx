@@ -26,8 +26,8 @@ function App() {
 
   return (
     <>
-      <Navbar />
       <Router>
+        <Navbar />
         <Routes>
           <Route path='/' element={<HomePage />} />
           <Route path='/products' element={<ProductsPage />} />
