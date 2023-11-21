@@ -8,12 +8,12 @@ export type Product = {
     creationDate: Timestamp,
     creatorUserId: string,
     imageUrl: string,
+    categories: string[],
     comments: Comment[],
 }
 
 export type Comment = {
     id?: string,
-    productId: string,
     description: string,
     creationDate: Timestamp,
     isDeleted: boolean,
@@ -21,8 +21,7 @@ export type Comment = {
 }
 
 export type Category = {
-    id?: string,
-    name: string,
+    id: string,
 }
 
 export type User = {
