@@ -17,7 +17,7 @@ export const postUser = async (user: User): Promise<void> => {
     try {
         if (!user.id) throw new Error('User id is not defined');
 
-        var userWithoutId = {...user};
+        const userWithoutId = {...user};
         delete userWithoutId.id;
 
         const userReference = doc(db, "users", user.id);
