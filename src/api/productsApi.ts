@@ -31,7 +31,7 @@ export const getProducts = async (): Promise<Product[]> => {
         const productsReference = collection(db, "products");
         const q = query(productsReference, orderBy("creationDate", "desc"), where("isDeleted", "==", false));
         const querySnapshot = await getDocs(q);
-        const products: Product[] = querySnapshot.docs.map((doc: any) => ({ id: doc.id, ...doc.data() }) as Product);
+        const products: Product[] = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }) as Product);
         return products;
     } catch (error) {
         console.log('Failed to get products', error);
