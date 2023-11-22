@@ -1,5 +1,5 @@
-import GoogleAuthButton from "./userAuthentication/GoogleAuthButton";
-import SignOutButton from "./userAuthentication/SignOutButton";
+import GoogleAuthButton from "../authentication/GoogleAuthButton";
+import SignOutButton from "../authentication/SignOutButton";
 import { useState, useEffect } from "react";
 import { onAuthStateChanged, getAuth } from "firebase/auth";
 
