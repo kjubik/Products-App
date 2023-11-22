@@ -19,7 +19,7 @@ export const postUser = async (user: User): Promise<void> => {
         var userWithoutId = {...user};
         delete userWithoutId.id;
 
-        const userReference = doc(db, "user", user.id);
+        const userReference = doc(db, "users", user.id);
         await setDoc(userReference, userWithoutId);
     } catch (error) {
         console.log('Failed to post user', error);
