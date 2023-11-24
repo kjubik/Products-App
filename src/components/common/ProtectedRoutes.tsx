@@ -19,7 +19,7 @@ const ProtectedRoutes = () => {
         });
     }, []);
 
-    return isAuthed === null ? <>Loading...</> : isAuthed ? <Outlet /> : <Navigate to="/" />;
+    return isAuthed === null ? <>Loading page...</> : isAuthed ? <Outlet /> : <Navigate to="/" />;
 }
 
 export default ProtectedRoutes;
