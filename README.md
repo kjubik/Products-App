@@ -12,4 +12,4 @@ This is the repository for product management system as part of the "Programming
 
 ## Technologies Used
 
-React, TypeScript, Tailwind, Firebase, Git, GitHub
+[![My Skills](https://skillicons.dev/icons?i=react,typescript,tailwind,firebase,git,github&theme=dark)](https://skillicons.dev)
