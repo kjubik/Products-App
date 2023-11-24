@@ -9,6 +9,8 @@ This is the repository for product management system as part of the "Programming
 - User authentication
 - User roles and permissions
 - Product catalog with search and filter functionalities
+- Posting products with descriptions and categories
+- Writing comments under products
 
 ## Technologies Used
 
