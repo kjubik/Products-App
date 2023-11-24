@@ -3,8 +3,6 @@ import { db } from "../App";
 import { Product } from "../types";
 
 
-
-
 export const postProduct = async (product: Product): Promise<void> => {
     try {
         const productReference = collection(db, "products");
