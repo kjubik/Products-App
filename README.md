@@ -1,4 +1,5 @@
-# ProductPal - Programming workshop course project
+# ProductPal 
+Final project for programming workshop course at the Adam Mickiewicz University
 
 ## Project overview
 
@@ -7,10 +8,10 @@ This is the repository for product management system as part of the "Programming
 ## Features
 
 - User authentication
-- User roles and permissions
-- Product catalog with search and filter functionalities
-- Posting products with descriptions and categories
-- Writing comments under products
+- User roles and permissions (admin-scoped editing user roles & product deletion)
+- Manage products (CRUD + server-side pagination)
+- Add comments to products (CRUD + server-side pagination)
+- Product searching and filtering by categories
 
 ## Technologies Used
 
