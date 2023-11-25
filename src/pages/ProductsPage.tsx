@@ -1,8 +1,12 @@
+import ProductsList from 'src/components/products/ProductList';
 
 
 const ProductsPage = () => {
   return (
-    <>Products Page</>
+    <>
+      Products Page
+      <ProductsList />
+    </>
   );
 };
 
