@@ -1,26 +1,17 @@
-import { useState, useEffect } from "react";
 import ProductCard from "./ProductCard";
-import { getProducts } from "src/api/productsApi";
 import { Product } from "src/types";
 
-const ProductsList = () => {
+interface ProductListProps {
+    products: Product[];
+}
 
-    const [products, setProducts] = useState<Product[]>([]);
-
-    useEffect(() => {
-        const getProductsFromFirestore = async () => {
-            const productsFromFirestore = await getProducts();
-            setProducts(productsFromFirestore);
-        }
-
-        getProductsFromFirestore();
-    }, []);
+const ProductsList = (props: ProductListProps) => {
 
     return (
     <>
         <h3>Products List</h3>
         <ul>
-            {products.map((product) => {
+            {props.products.map((product) => {
                 return (
                     <li key={product.id} className="py-4">
                         <ProductCard product={product} />
