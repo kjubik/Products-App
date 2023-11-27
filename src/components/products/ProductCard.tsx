@@ -26,7 +26,7 @@ const ProductsCard = (props: ProductCardProps) => {
                         {props.product.creatorUsername}
                     </p>
                     <p className="">
-                        {props.product.creationDate.toDate().toLocaleString('pl-PL', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })}
+                        {props.product.creationDate.toDate().toLocaleString('en-GB', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })}
                     </p>
                 </div>
                 {/* <div className="rounded-full outline outline-1 outline-slate-300">
