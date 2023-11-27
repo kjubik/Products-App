@@ -5,11 +5,13 @@ import { getProducts } from 'src/api/productsApi';
 
 const ProductsPage = () => {
   const [products, setProducts] = useState<Product[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const getProductsFromFirestore = async () => {
         const productsFromFirestore = await getProducts();
         setProducts(productsFromFirestore);
+        setIsLoading(false);
     }
 
     getProductsFromFirestore();
@@ -18,7 +20,7 @@ const ProductsPage = () => {
   return (
     <>
       <h2>Products Page</h2>
-      <ProductsList products={products} />
+      {isLoading ? <>Loading products...</> : <ProductsList products={products}/>}
     </>
   );
 };
