@@ -20,14 +20,18 @@ const ProductsCard = (props: ProductCardProps) => {
                         {props.product.description}
                     </p>
                 </div>
-                <div className="flex justify-between px-1">
-                    <p className="text-sm font-regular text-slate-600 tracking-tight">
-                        {props.product.creatorUserId}
+                <div className="flex justify-between px-1
+                text-sm font-regular text-slate-500 tracking-tight">
+                    <p className="">
+                        {props.product.creatorUsername}
                     </p>
-                    <p className="text-sm font-regular text-slate-600 tracking-tight">
-                        {props.product.creationDate.toDate().toLocaleDateString()}
+                    <p className="">
+                        {props.product.creationDate.toDate().toLocaleString('pl-PL', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })}
                     </p>
                 </div>
+                {/* <div className="rounded-full outline outline-1 outline-slate-300">
+                    <input type="text" className="px-4 py-2 w-full placeholder-slate-400" placeholder="Write a comment" />
+                </div> */}
             </div>
         </>
     );
