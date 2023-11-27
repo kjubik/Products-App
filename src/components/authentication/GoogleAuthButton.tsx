@@ -17,9 +17,12 @@ const GoogleAuthButton = () => {
         const newUser: User = {
           id: authResult.user.uid,
           email: authResult.user.email || '',
+          username: authResult.user.displayName || '',
           isAdmin: false,
         }
         await postUser(newUser);
+        // TODO: check if user was added in database, eventually rollback signInWithPopup
+        // and vice versa(?)
       } else console.log('signing in existing user')
 
       navigate('/profile');
@@ -30,7 +33,8 @@ const GoogleAuthButton = () => {
   }
 
   return (
-    <button onClick={authWithGoogle}>
+    <button onClick={authWithGoogle}
+    className="rounded bg-blue-500 hover:bg-blue-700 px-2 py-1 text-white font-semibold">
       Continue with Google
     </button>
   );

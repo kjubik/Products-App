@@ -26,6 +26,7 @@ function App() {
 
   return (
     <>
+    <div className='bg-slate-50 h-full min-h-screen'>
       <Router>
         <Navbar />
         <Routes>
@@ -36,6 +37,7 @@ function App() {
           </Route>
         </Routes>
       </Router>
+    </div>
     </>
   )
 }
