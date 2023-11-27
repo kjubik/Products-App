@@ -27,3 +27,14 @@ export const postUser = async (user: User): Promise<void> => {
         throw error;
     }
 }
+
+export const getUsername = async (userId: string): Promise<string> => {
+    try {
+        const queryResult = await getDoc(doc(db, "users", userId));
+        if (!queryResult.exists()) throw new Error('User does not exist');
+        return queryResult.data().username as string;
+    } catch (error) {
+        console.log('Failed to get username', error);
+        throw error;
+    }
+}

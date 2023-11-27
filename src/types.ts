@@ -7,6 +7,7 @@ export type Product = {
     isDeleted: boolean,
     creationDate: Timestamp,
     creatorUserId: string,
+    creatorUsername: string,
     imageUrl: string,
     categories: string[],
     comments: Comment[],
@@ -27,5 +28,6 @@ export type Category = {
 export type User = {
     id?: string,
     email: string,
+    username: string,
     isAdmin: boolean,
 }

@@ -24,8 +24,9 @@ const ProfilePage = () => {
     <>
       {isLoading ? <>Loading user data...</> : (
         <ul>
-          {user ? <li>{user.email}</li> : null}
-          {user?.isAdmin ? <li>Admin</li> : null}
+          <li>{user?.username}</li>
+          <li>{user?.email}</li>
+          {user?.isAdmin ? <li>Admin account</li> : null}
         </ul>
       )}
     </>
