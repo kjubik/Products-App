@@ -5,8 +5,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import ProductsPage from './pages/ProductsPage';
 import ProfilePage from './pages/ProfilePage';
-import ProtectedRoutes from './components/common/ProtectedRoutes';
-import Navbar from './components/common/Navbar';
+import ProtectedRoutes from 'src/components/common/ProtectedRoutes';
+import Navbar from 'src/components/common/Navbar';
 
 
 const firebaseConfig = {
