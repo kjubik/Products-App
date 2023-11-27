@@ -34,7 +34,7 @@ const GoogleAuthButton = () => {
 
   return (
     <button onClick={authWithGoogle}
-    className="rounded bg-blue-500 hover:bg-blue-700 px-2 py-1 text-white font-semibold">
+    className="rounded-full bg-blue-500 hover:bg-blue-700 px-4 py-1 text-white font-semibold">
       Continue with Google
     </button>
   );
