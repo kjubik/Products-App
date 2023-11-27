@@ -16,7 +16,6 @@ export const postProduct = async (product: Product): Promise<void> => {
 export const getProduct = async (productId: string): Promise<Product> => {
     try {
         const queryResult = await getDoc(doc(db, "products", productId));
-        console.log('queryResult.data()', queryResult.data());
         return { id:productId, ...queryResult.data()} as Product;
     } catch (error) {
         console.log('Failed to get product', error);
