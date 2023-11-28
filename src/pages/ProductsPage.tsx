@@ -2,6 +2,7 @@ import ProductsList from 'src/components/products/ProductList';
 import { useState, useEffect } from 'react';
 import { Product } from 'src/types';
 import { getProducts } from 'src/api/productsApi';
+import CreatePostButton from 'src/components/products/CreatePostButton';
 
 const ProductsPage = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -9,18 +10,23 @@ const ProductsPage = () => {
 
   useEffect(() => {
     const getProductsFromFirestore = async () => {
-        const productsFromFirestore = await getProducts();
-        setProducts(productsFromFirestore);
-        setIsLoading(false);
-    }
+      const productsFromFirestore = await getProducts();
+      setProducts(productsFromFirestore);
+      setIsLoading(false);
+    };
 
     getProductsFromFirestore();
-}, []);
+  }, []);
 
   return (
     <>
-      <h2>Products Page</h2>
-      {isLoading ? <>Loading products...</> : <ProductsList products={products}/>}
+      {isLoading ? (
+        <>Loading products...</>
+      ) : (
+        <div className='flex justify-center items-center w-screen'>
+          <ProductsList products={products} />
+        </div>
+      )}
     </>
   );
 };

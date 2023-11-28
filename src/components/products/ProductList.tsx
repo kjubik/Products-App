@@ -9,8 +9,7 @@ const ProductsList = (props: ProductListProps) => {
 
     return (
     <>
-        <h3>Products List</h3>
-        <ul>
+        <ul className="grid grid-cols-3">
             {props.products.map((product) => {
                 return (
                     <li key={product.id} className="py-4">
