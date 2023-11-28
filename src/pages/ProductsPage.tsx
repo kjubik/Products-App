@@ -27,6 +27,9 @@ const ProductsPage = () => {
           <ProductsList products={products} />
         </div>
       )}
+      <div className='fixed bottom-8 right-12 items-baseline'>
+        <CreatePostButton />
+      </div>
     </>
   );
 };
