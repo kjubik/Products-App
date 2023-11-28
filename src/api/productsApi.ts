@@ -49,6 +49,19 @@ export const getProdcutsWithLimit = async (docLimit: number): Promise<Product[]>
     }
 }
 
+export const getProductsByCategory = async (category: string): Promise<Product[]> => {
+    try {
+        const productsReference = collection(db, "products");
+        const q = query(productsReference, orderBy("creationDate", "desc"), where("isDeleted", "==", false), where("categories", "array-contains", category));
+        const querySnapshot = await getDocs(q);
+        const products: Product[] = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }) as Product);
+        return products;
+    } catch (error) {
+        console.log('Failed to get products by category', error);
+        throw error;
+    }
+}
+
 export const deleteProduct = async (productId: string): Promise<void> => {
     try {
         const productReference = doc(db, "products", productId);
