@@ -22,7 +22,8 @@ export type Comment = {
 }
 
 export type Category = {
-    id: string,
+    id?: string,
+    name: string,
 }
 
 export type User = {
