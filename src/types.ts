@@ -32,3 +32,7 @@ export type User = {
     username: string,
     isAdmin: boolean,
 }
+
+export type OptionType = {
+    [variable: string]: any 
+}

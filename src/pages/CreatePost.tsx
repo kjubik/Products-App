@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Select from "react-select";
+import { getCategoriesAsOptions } from "src/api/categoriesApi";
+import { Category, OptionType } from "src/types";
 
 const CreatePost = () => {
 
@@ -9,12 +11,16 @@ const CreatePost = () => {
         setDescriptionLength(e.target.value.length);
     }
 
-    const customSelectStyles = {
-        control: (baseStyles: any) => ({
-            ...baseStyles,
-            color: 'text-red-400',
-        }),
-    }
+    const [categories, setCategories] = useState<OptionType[]>([]);
+
+    useEffect(() => {
+        const fetchCategoriesFromFirestore = async () => {
+            const categoriesFromFirestore = await getCategoriesAsOptions();
+            setCategories(categoriesFromFirestore);
+        }
+
+        fetchCategoriesFromFirestore();
+    }, []);
 
     return (
         <>
@@ -35,10 +41,9 @@ const CreatePost = () => {
                 focus:outline-2 focus:outline-blue-400"/>
 
                 <Select
-                    options={[{value: '1', label: 'one'}, {value: '2', label: 'two'}]} 
+                    options={categories}
                     isMulti
                     name="categories"
-                    styles={customSelectStyles}
                     className="basic-multi-select"
                     classNamePrefix="select"
                 />
