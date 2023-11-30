@@ -55,11 +55,11 @@ export const getCategoriesAsOptions = async (): Promise<OptionType[]> => {
   //   "education",
   //   "sustainable living",
   //   "office supplies",
-    //   "outdoor",
-    //   "jewelry",
-    //   "tools",
-    //   "industrial",
-    //   "handmade",
-    //   "other",
+  //   "outdoor",
+  //   "jewelry",
+  //   "tools",
+  //   "industrial",
+  //   "handmade",
+  //   "other",
   // ];
 
