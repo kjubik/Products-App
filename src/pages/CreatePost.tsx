@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Select, { ActionMeta, MultiValue } from "react-select";
+import Select, { MultiValue } from "react-select";
 import { auth } from "src/App";
 import { getCategoriesAsOptions } from "src/api/categoriesApi";
 import { postProduct } from "src/api/productsApi";
@@ -36,7 +36,7 @@ const CreatePost = () => {
 
         fetchCategoriesFromFirestore();
         fetchUsernameFromFirestore();
-    }, []);
+    },);
 
     const handleDescriptionInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         setDescriptionLength(e.target.value.length);
