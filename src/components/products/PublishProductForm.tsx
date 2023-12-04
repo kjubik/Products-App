@@ -46,15 +46,15 @@ const PublishProductForm = ({ productData, setProductData, isNewProduct, buttonT
 
     const handleSelectCategory = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const { value } = e.target;
-        if (!productData.categories) {
+        if (productData.categories) {
             setProductData({
                 ...productData,
-                categories: [value]
+                categories: [...productData.categories, value]
             })
         } else {
             setProductData({
                 ...productData,
-                categories: [...productData.categories, value]
+                categories: [value]
             })
         }
     }
