@@ -7,7 +7,9 @@ import ProductsPage from './pages/ProductsPage';
 import ProfilePage from './pages/ProfilePage';
 import ProtectedRoutes from 'src/components/common/ProtectedRoutes';
 import Navbar from 'src/components/common/Navbar';
-import CreatePost from 'src/pages/CreatePost';
+import ProductPage from 'src/pages/ProductPage';
+import NewProductPage from './pages/NewProductPage';
+import EditProductPage from './pages/EditProductPage';
 
 
 const firebaseConfig = {
@@ -33,9 +35,11 @@ function App() {
         <Routes>
           <Route path='/' element={<HomePage />} />
           <Route path='/products' element={<ProductsPage />} />
+          <Route path='/product/:productId' element={<ProductPage />} />
           <Route element={<ProtectedRoutes />}>
             <Route path='/profile' element={<ProfilePage />} />
-            <Route path='/create-post' element={<CreatePost/>} />
+            <Route path='/new-product' element={<NewProductPage/>} />
+            <Route path='/edit-product/:productId' element={<EditProductPage />} />
           </Route>
         </Routes>
       </Router>
