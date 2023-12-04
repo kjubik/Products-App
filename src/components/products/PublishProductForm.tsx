@@ -83,17 +83,17 @@ const PublishProductForm = ({ productData, setProductData, isNewProduct, buttonT
     return (
         <>
             <div className='p-4 mx-auto flex flex-col gap-4 max-w-sm rounded'>
-                <input name="imageUrl" type="url"
+                <input name="imageUrl" type="url" value={productData.imageUrl}
                 onChange={handleInputChange} placeholder="Paste image URL"
                 className="rounded px-3 py-2 outline outline-1 outline-slate-200
                 focus:outline-2 focus:outline-blue-400"/>
 
                 <input name="title" 
-                onChange={handleInputChange} type="text" placeholder="Product title"
+                onChange={handleInputChange} type="text" placeholder="Product title" value={productData.title}
                 className="focus:outline-none bg-inherit text-2xl font-semibold"/>
 
                 <div className="flex flex-col gap-1">
-                    <textarea name="description"
+                    <textarea name="description" value={productData.description}
                     onInput={handleDescriptionInput} placeholder="Write a description" maxLength={200}
                     className="rounded px-3 py-2 outline outline-1 outline-slate-200
                     pb-20 resize-none focus:outline-2 focus:outline-blue-400"/>
