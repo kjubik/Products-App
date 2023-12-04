@@ -62,6 +62,18 @@ export const getProductsByCategory = async (category: string): Promise<Product[]
     }
 }
 
+export const putProduct = async (product: Product): Promise<void> => {
+    try {
+        if (!product.id) throw new Error('Product id is missing');
+        const productReference = doc(db, "products", product.id);
+        await setDoc(productReference, product, { merge: true });
+    } catch (error) {
+        console.log('Failed to put product', error);
+        throw error;
+    }
+
+}
+
 export const deleteProduct = async (productId: string): Promise<void> => {
     try {
         const productReference = doc(db, "products", productId);
