@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { postProduct } from "src/api/productsApi";
+import { postProduct, putProduct } from "src/api/productsApi";
 import { Category, Product } from "src/types";
 import { getCategories } from "src/api/categoriesApi";
 import { useNavigate } from "react-router-dom";
@@ -8,10 +8,11 @@ import { useNavigate } from "react-router-dom";
 interface Props {
     productData: Product;
     setProductData: React.Dispatch<React.SetStateAction<Product>>;
+    isNewProduct: boolean;
     buttonText: string;
 }
 
-const PublishProductForm = ({ productData, setProductData, buttonText }: Props) => {
+const PublishProductForm = ({ productData, setProductData, isNewProduct, buttonText }: Props) => {
 
     const [descriptionLength, setDescriptionLength] = useState(productData.description.length);
     const [categories, setCategories] = useState<Category[]>([]);
@@ -69,8 +70,14 @@ const PublishProductForm = ({ productData, setProductData, buttonText }: Props) 
         }
             
         console.log(productData);
-        await postProduct(productData);
-        navigate('/products');   
+        if (isNewProduct) {
+            await postProduct(productData);
+        } else {
+            await putProduct(productData);
+        }
+
+        navigate('/products');
+        return;
     }
 
     return (
