@@ -1,97 +1,75 @@
 import { useState, useEffect } from "react";
-import { auth } from "src/App";
 import { postProduct } from "src/api/productsApi";
-import { getUsername } from "src/api/usersApi";
 import { Category, Product } from "src/types";
-import { Timestamp, serverTimestamp  } from "firebase/firestore";
-import { Comment } from "src/types";
 import { getCategories } from "src/api/categoriesApi";
 import { useNavigate } from "react-router-dom";
 
-const CreatePost = () => {
 
-    const navigate = useNavigate();
+interface Props {
+    productData: Product;
+    setProductData: React.Dispatch<React.SetStateAction<Product>>;
+    buttonText: string;
+}
 
-    const [newProduct, setNewProduct] = useState<Product>({
-        isDeleted: false,
-        creatorUserId: auth.currentUser?.uid,
-        creatorUsername: '',
-        comments: [] as Comment[],
-        creationDate: serverTimestamp(),
-        categories: [] as string[],
-    } as Product);
+const PublishProductForm = ({ productData, setProductData, buttonText }: Props) => {
 
-    const [descriptionLength, setDescriptionLength] = useState(0);
+    const [descriptionLength, setDescriptionLength] = useState(productData.description.length);
     const [categories, setCategories] = useState<Category[]>([]);
 
     useEffect(() => {
-        const fetchUsernameFromFirestore = async () => {
-            if (!auth.currentUser?.uid) return;
-            const username = await getUsername(auth.currentUser?.uid);
-            setNewProduct({
-                ...newProduct,
-                creatorUsername: username
-            })
-        }
         const fetchCategoriesFromFirestore = async () => {
             const fetchedCategories = await getCategories();
             setCategories(fetchedCategories);
         }
 
-        fetchUsernameFromFirestore();
         fetchCategoriesFromFirestore();
     }, []);
 
+    const navigate = useNavigate();
+
     const handleDescriptionInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         setDescriptionLength(e.target.value.length);
-        setNewProduct({
-            ...newProduct,
+        setProductData({
+            ...productData,
             description: e.target.value
         })
     }
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
-        setNewProduct({
-            ...newProduct,
+        setProductData({
+            ...productData,
             [name]: value
         })
     }
 
     const handleSelectCategory = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const { value } = e.target;
-        if (!newProduct.categories) {
-            setNewProduct({
-                ...newProduct,
+        if (!productData.categories) {
+            setProductData({
+                ...productData,
                 categories: [value]
             })
         } else {
-            setNewProduct({
-                ...newProduct,
-                categories: [...newProduct.categories, value]
+            setProductData({
+                ...productData,
+                categories: [...productData.categories, value]
             })
         }
     }
 
-    const validateProductPost = () => {
+    const validateProductForm = () => {
         return true;
     }
 
     const handlePublishPost = async () => {
-        if (!validateProductPost()) {
+        if (!validateProductForm()) {
             alert('Please fill all the fields');
             return;
         }
             
-        console.log(newProduct);
-        const creationDate = new Date();
-        const timestamp = Timestamp.fromDate(creationDate);
-        const updatedProduct = {
-            ...newProduct,
-            creationDate: timestamp
-        };
-
-        await postProduct(updatedProduct);
+        console.log(productData);
+        await postProduct(productData);
         navigate('/products');   
     }
 
@@ -127,11 +105,11 @@ const CreatePost = () => {
                 className="rounded-full bg-blue-500 text-white font-semibold 
                 px-4 py-1 flex items-center justify-around text-lg
                 shadow-md shadow-blue-200 hover:bg-blue-700 mt-4">
-                    Publish
+                    {buttonText}
                 </button>
             </div>
         </>
     );
 };
 
-export default CreatePost;
+export default PublishProductForm;
