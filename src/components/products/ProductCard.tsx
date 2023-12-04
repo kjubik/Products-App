@@ -1,7 +1,10 @@
 import { Product } from "src/types";
+// import DropdownButton from "src/components/common/DropdownButton";
 
 interface ProductCardProps {
     product: Product;
+    userIsAdmin: boolean;
+    viewerId: string | undefined;
 }
 
 const ProductsCard = (props: ProductCardProps) => {
@@ -10,12 +13,22 @@ const ProductsCard = (props: ProductCardProps) => {
         <>
             <div className="flex flex-col gap-4 max-w-sm p-4 rounded-lg bg-slate-50 
             outline outline-1 outline-slate-200">
-                {/* {if the user is an admin render this} */}
                 <div className="flex w-full justify-between gap-4 px-1">
                     <p className="">
                         {props.product.creatorUsername}
                     </p>
-                    <button>Options</button>
+                    
+                    <div className="flex gap-4 font-semibold"> 
+                        <a href={`/product/${props.product.id}`}
+                        className="text-slate-800/70 hover:text-slate-800">
+                            Edit
+                        </a>
+                        <a href={`/product/${props.product.id}`}
+                        className="text-red-500/70 hover:text-red-500">
+                            Delete
+                        </a>
+                    </div>
+                    {/* <DropdownButton listItems={[{name: props.product.title, link: `product/${props.product.id}`}]} /> */}
                 </div>
 
                 <img src={props.product.imageUrl} alt="product image" 
