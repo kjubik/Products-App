@@ -38,3 +38,14 @@ export const getUsername = async (userId: string): Promise<string> => {
         throw error;
     }
 }
+
+export const isUserAdmin = async (userId: string): Promise<boolean> => {
+    try {
+        const queryResult = await getDoc(doc(db, "users", userId));
+        if (!queryResult.exists()) throw new Error('User does not exist');
+        return queryResult.data().isAdmin as boolean;
+    } catch (error) {
+        console.log('Failed to get username', error);
+        throw error;
+    }
+}
