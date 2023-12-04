@@ -8,7 +8,6 @@ const NewProductPage = () => {
 
     const auth = getAuth();
 
-
     const [newProduct, setNewProduct] = useState<Product>({
         isDeleted: false,
         creatorUserId: auth.currentUser?.uid,
