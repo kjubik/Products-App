@@ -19,7 +19,7 @@ const ProductsCard = (props: ProductCardProps) => {
                     </p>
                     
                     <div className="flex gap-4 font-semibold"> 
-                        <a href={`/product/${props.product.id}`}
+                        <a href={`/edit-product/${props.product.id}`}
                         className="text-slate-800/70 hover:text-slate-800">
                             Edit
                         </a>
