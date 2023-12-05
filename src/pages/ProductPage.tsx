@@ -30,7 +30,7 @@ const ProductPage = () => {
 
         fetchProduct();
         checkIfUserIsAdmin();
-    }, [product]);
+    });
 
     return (
         <>
