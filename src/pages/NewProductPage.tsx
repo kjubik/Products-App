@@ -24,6 +24,7 @@ const NewProductPage = () => {
             productData={newProduct} 
             setProductData={setNewProduct}  
             buttonText='Publish'
+            isNewProduct={true}
         />
     </>
     )
