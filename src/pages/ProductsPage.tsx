@@ -16,7 +16,7 @@ const ProductsPage = () => {
     };
 
     getProductsFromFirestore();
-  }, [products]);
+  }, []);
 
   const handleRefresh = async () => {
     setProducts(products.filter(product => product.isDeleted == false));
