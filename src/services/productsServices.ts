@@ -29,6 +29,7 @@ export const getProducts = async (): Promise<Product[]> => {
         const q = query(productsReference, orderBy("creationDate", "desc"), where("isDeleted", "==", false));
         const querySnapshot = await getDocs(q);
         const products: Product[] = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }) as Product);
+        console.log('Get products successful');
         return products;
     } catch (error) {
         console.log('Failed to get products', error);
@@ -42,6 +43,7 @@ export const getProductsWithLimit = async (docLimit: number): Promise<Product[]>
         const q = query(productsReference, orderBy("creationDate", "desc"), where("isDeleted", "==", false), limit(docLimit));
         const querySnapshot = await getDocs(q);
         const products: Product[] = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }) as Product);
+        console.log('Get products with limit successful');
         return products;
     } catch (error) {
         console.log('Failed to get products with limit of', docLimit, 'entries', error);
