@@ -27,7 +27,7 @@ const ProductsList = (props: ProductListProps) => {
 
     return (
     <>
-        <ul className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <ul className="column-1 gap-4">
             {props.products.map((product) => {
                 return (
                     <li key={product.id} 

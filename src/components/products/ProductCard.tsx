@@ -39,11 +39,7 @@ const ProductsCard = (props: ProductCardProps) => {
                             </button>
                         }
                     </div>
-                    {/* <DropdownButton listItems={[{name: props.product.title, link: `product/${props.product.id}`}]} /> */}
                 </div>
-
-                <img src={props.product.imageUrl} alt="product image" 
-                className="max-w-sm rounded" />
 
                 <div className="flex flex-col gap-2 px-1">
                     <h4 className="text-3xl font-bold text-slate-900 tracking-tight">
@@ -53,6 +49,9 @@ const ProductsCard = (props: ProductCardProps) => {
                         {props.product.description}
                     </p>
                 </div>
+
+                <img src={props.product.imageUrl} alt="product image" 
+                className="max-w-sm rounded" />
 
                 <p className="text-slate-400">
                     {props.product.creationDate.toDate().toLocaleString('en-GB', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })}
