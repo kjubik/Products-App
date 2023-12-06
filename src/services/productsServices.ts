@@ -44,7 +44,7 @@ export const getProductsWithLimit = async (docLimit: number): Promise<Product[]>
         const products: Product[] = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }) as Product);
         return products;
     } catch (error) {
-        console.log('Failed to get products with limit of ', docLimit, 'entries', error);
+        console.log('Failed to get products with limit of', docLimit, 'entries', error);
         throw error;
     }
 }
