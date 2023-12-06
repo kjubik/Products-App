@@ -24,7 +24,7 @@ const Navbar = () => {
     return (
         <>
         <nav className="w-full bg-slate-200 flex items-center align-center justify-between px-8 py-4">
-            <h1><a href="/">ProductPal</a></h1>
+            <h1 className="font-bold"><a href="/">produkty app</a></h1>
             <ul className="flex gap-8">
                 <li><a href="/products" className="text-blue-500 hover:text-blue-700 font-semibold">Products</a></li>
                 <li><a href="/profile" className="text-blue-500 hover:text-blue-700 font-semibold">Profile</a></li>
