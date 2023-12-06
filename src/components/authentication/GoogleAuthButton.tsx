@@ -1,6 +1,6 @@
 import { getAdditionalUserInfo, getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { User } from "../../types";
-import { postUser } from "../../api/usersApi";
+import { postUser } from "../../services/usersServices";
 import { useNavigate } from "react-router-dom";
 
 const GoogleAuthButton = () => {

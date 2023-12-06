@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { postProduct, putProduct } from "src/api/productsApi";
+import { postProduct, putProduct } from "src/services/productsServices";
 import { Category, Product } from "src/types";
-import { getCategories } from "src/api/categoriesApi";
+import { getCategories } from "src/services/categoriesServices";
 import { useNavigate } from "react-router-dom";
 
 

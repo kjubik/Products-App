@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getAuth } from 'firebase/auth';
-import { getUser } from '../api/usersApi';
+import { getUser } from '../services/usersServices';
 import { User } from '../types';
 
 const ProfilePage = () => {

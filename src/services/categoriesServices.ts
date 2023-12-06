@@ -1,7 +1,6 @@
 import { db } from "src/App";
 import { addDoc, getDocs, collection, orderBy, query } from "firebase/firestore";
 import { Category } from "src/types";
-import { OptionType } from "src/types";
 
 export const postCategory = async (name: string) => {
     const categoryRef = collection(db, 'categories');
@@ -26,12 +25,6 @@ export const getCategories = async (): Promise<Category[]> => {
     console.error('Error getting categories:', error);
     throw error;
   }
-}
-
-export const getCategoriesAsOptions = async (): Promise<OptionType[]> => {
-  const categories = await getCategories();
-  const options: OptionType[] = categories.map((category) => ({ value: category.id, label: category.name.charAt(0).toUpperCase() + category.name.slice(1)}));
-  return options;
 }
 
   // const productCategories = [

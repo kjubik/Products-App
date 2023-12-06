@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
 import { Product } from "src/types";
 import { auth } from "src/App";
-import { getUser } from "src/api/usersApi";
-import { deleteProduct } from "src/api/productsApi";
+import { getUser } from "src/services/usersServices";
+import { deleteProduct } from "src/services/productsServices";
 
 
 interface ProductListProps {
