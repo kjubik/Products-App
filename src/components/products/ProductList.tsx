@@ -46,5 +46,4 @@ const ProductsList = (props: ProductListProps) => {
     );
   };
   
-  export default ProductsList;
-  
+export default ProductsList;
