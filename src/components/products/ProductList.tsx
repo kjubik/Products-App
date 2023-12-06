@@ -3,12 +3,11 @@ import ProductCard from "./ProductCard";
 import { Product } from "src/types";
 import { auth } from "src/App";
 import { getUser } from "src/services/usersServices";
-import { deleteProduct } from "src/services/productsServices";
 
 
 interface ProductListProps {
     products: Product[];
-    onRefresh: () => void;
+    onDelete: (deletedProductId: string | undefined) => void;
 }
 
 const ProductsList = (props: ProductListProps) => {
@@ -23,27 +22,21 @@ const ProductsList = (props: ProductListProps) => {
         }
         
         fetchUserData();
-    }, [userIsAdmin]);
+    }, []);
 
-    const handleDelete = async (id: string | undefined) => {
-        if (!id) {
-            console.error("Product id is undefined");
-            return;
-        }
-        await deleteProduct(id);
-    };
 
     return (
     <>
-        <ul className="grid grid-cols-3 gap-4">
+        <ul className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {props.products.map((product) => {
                 return (
-                    <li key={product.id} className="py-4">
+                    <li key={product.id} 
+                        className="py-4">
                         <ProductCard 
                             product={product} 
                             userIsAdmin={userIsAdmin} 
                             viewerId={auth.currentUser?.uid} 
-                            onDelete={() => handleDelete(product.id)}
+                            onDelete={() => props.onDelete(product.id)}
                         />
                     </li>
                 )

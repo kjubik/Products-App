@@ -10,7 +10,7 @@ const ProductsPage = () => {
 
   useEffect(() => {
     const getProductsFromFirestore = async () => {
-      const productsFromFirestore = await getProductsWithLimit(6);
+      const productsFromFirestore = await getProductsWithLimit(100);
       setProducts(productsFromFirestore);
       setIsLoading(false);
     };
@@ -18,8 +18,8 @@ const ProductsPage = () => {
     getProductsFromFirestore();
   }, []);
 
-  const handleRefresh = async () => {
-    setProducts(products.filter(product => product.isDeleted == false));
+  const handleDelete = async (deletedProductId: string | undefined) => {
+    setProducts(products.filter(product => product.id !== deletedProductId));
   }
 
   return (
@@ -28,7 +28,7 @@ const ProductsPage = () => {
         <>Loading products...</>
       ) : (
         <div className='flex justify-center items-center w-screen'>
-          <ProductsList products={products} onRefresh={handleRefresh} />
+          <ProductsList products={products} onDelete={handleDelete} />
         </div>
       )}
       <div className='fixed bottom-8 right-12 items-baseline'>

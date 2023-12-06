@@ -1,4 +1,5 @@
 import { Product } from "src/types";
+import { deleteProduct } from "src/services/productsServices";
 
 interface ProductCardProps {
     product: Product;
@@ -8,6 +9,12 @@ interface ProductCardProps {
 }
 
 const ProductsCard = (props: ProductCardProps) => {
+
+    const handleDelete = async () => {
+        if (!props.product.id) return;
+        await deleteProduct(props.product.id);
+        props.onDelete();
+    }
 
     return (
         <>
@@ -26,7 +33,7 @@ const ProductsCard = (props: ProductCardProps) => {
                             </a>
                         }
                         {props.userIsAdmin &&
-                            <button onClick={props.onDelete}
+                            <button onClick={handleDelete}
                             className="text-red-500/70 hover:text-red-500">
                                 Delete
                             </button>
