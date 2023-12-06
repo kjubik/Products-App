@@ -1,10 +1,10 @@
 import { Product } from "src/types";
-// import DropdownButton from "src/components/common/DropdownButton";
 
 interface ProductCardProps {
     product: Product;
     userIsAdmin: boolean;
     viewerId: string | undefined;
+    onDelete: () => void; // Callback function to update ProductList
 }
 
 const ProductsCard = (props: ProductCardProps) => {
@@ -19,14 +19,18 @@ const ProductsCard = (props: ProductCardProps) => {
                     </p>
                     
                     <div className="flex gap-4 font-semibold"> 
-                        <a href={`/edit-product/${props.product.id}`}
-                        className="text-slate-800/70 hover:text-slate-800">
-                            Edit
-                        </a>
-                        <a href={`/product/${props.product.id}`}
-                        className="text-red-500/70 hover:text-red-500">
-                            Delete
-                        </a>
+                        {props.viewerId === props.product.creatorUserId && 
+                            <a href={`/edit-product/${props.product.id}`}
+                            className="text-slate-800/70 hover:text-slate-800">
+                                Edit
+                            </a>
+                        }
+                        {props.userIsAdmin &&
+                            <button onClick={props.onDelete}
+                            className="text-red-500/70 hover:text-red-500">
+                                Delete
+                            </button>
+                        }
                     </div>
                     {/* <DropdownButton listItems={[{name: props.product.title, link: `product/${props.product.id}`}]} /> */}
                 </div>
