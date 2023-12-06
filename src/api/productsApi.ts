@@ -36,7 +36,7 @@ export const getProducts = async (): Promise<Product[]> => {
     }
 }
 
-export const getProdcutsWithLimit = async (docLimit: number): Promise<Product[]> => {
+export const getProductsWithLimit = async (docLimit: number): Promise<Product[]> => {
     try {
         const productsReference = collection(db, "products");
         const q = query(productsReference, orderBy("creationDate", "desc"), where("isDeleted", "==", false), limit(docLimit));
@@ -78,7 +78,7 @@ export const deleteProduct = async (productId: string): Promise<void> => {
     try {
         const productReference = doc(db, "products", productId);
         await setDoc(productReference, { isDeleted: true }, { merge: true });
-        console.log('opa')
+        console.log('Product deleted successfully')
     } catch (error) {
         console.log('Failed to delete product', error);
         throw error;
