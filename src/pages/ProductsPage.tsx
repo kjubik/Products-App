@@ -1,7 +1,7 @@
 import ProductsList from 'src/components/products/ProductList';
 import { useState, useEffect } from 'react';
 import { Product } from 'src/types';
-import { getProducts } from 'src/api/productsApi';
+import { getProductsWithLimit } from 'src/api/productsApi';
 import CreatePostButton from 'src/components/products/CreatePostButton';
 
 const ProductsPage = () => {
@@ -10,7 +10,7 @@ const ProductsPage = () => {
 
   useEffect(() => {
     const getProductsFromFirestore = async () => {
-      const productsFromFirestore = await getProducts();
+      const productsFromFirestore = await getProductsWithLimit(6);
       setProducts(productsFromFirestore);
       setIsLoading(false);
     };
