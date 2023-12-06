@@ -1,11 +1,37 @@
+import { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
 import { Product } from "src/types";
+import { auth } from "src/App";
+import { getUser } from "src/api/usersApi";
+import { deleteProduct } from "src/api/productsApi";
+
 
 interface ProductListProps {
     products: Product[];
+    onRefresh: () => void;
 }
 
 const ProductsList = (props: ProductListProps) => {
+
+    const [userIsAdmin, setUserIsAdmin] = useState(false);
+
+    useEffect(() => {
+        const fetchUserData = async () => {
+            if (!auth.currentUser) return;
+            const data = await getUser(auth.currentUser.uid);
+            setUserIsAdmin(data.isAdmin);
+        }
+        
+        fetchUserData();
+    }, [userIsAdmin]);
+
+    const handleDelete = async (id: string | undefined) => {
+        if (!id) {
+            console.error("Product id is undefined");
+            return;
+        }
+        await deleteProduct(id);
+    };
 
     return (
     <>
@@ -13,7 +39,12 @@ const ProductsList = (props: ProductListProps) => {
             {props.products.map((product) => {
                 return (
                     <li key={product.id} className="py-4">
-                        <ProductCard product={product} />
+                        <ProductCard 
+                            product={product} 
+                            userIsAdmin={userIsAdmin} 
+                            viewerId={auth.currentUser?.uid} 
+                            onDelete={() => handleDelete(product.id)}
+                        />
                     </li>
                 )
             })}

@@ -16,7 +16,11 @@ const ProductsPage = () => {
     };
 
     getProductsFromFirestore();
-  }, []);
+  }, [products]);
+
+  const handleRefresh = async () => {
+    setProducts(products.filter(product => product.isDeleted == false));
+  }
 
   return (
     <>
@@ -24,7 +28,7 @@ const ProductsPage = () => {
         <>Loading products...</>
       ) : (
         <div className='flex justify-center items-center w-screen'>
-          <ProductsList products={products} />
+          <ProductsList products={products} onRefresh={handleRefresh} />
         </div>
       )}
       <div className='fixed bottom-8 right-12 items-baseline'>
