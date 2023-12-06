@@ -13,13 +13,15 @@ import EditProductPage from './pages/EditProductPage';
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBpHcUmLa0dy7AtEKrVICURN4oxHS0jTZA",
-  authDomain: "pracowniaprogramowania-792db.firebaseapp.com",
-  projectId: "pracowniaprogramowania-792db",
-  storageBucket: "pracowniaprogramowania-792db.appspot.com",
-  messagingSenderId: "742625012766",
-  appId: "1:742625012766:web:90f6ea94880f4e87c0520f"
+  apiKey: "AIzaSyCyuax0IhEU-XCqCtUjr4ZGXTtha4t0Fg8",
+  authDomain: "products-85273.firebaseapp.com",
+  projectId: "products-85273",
+  storageBucket: "products-85273.appspot.com",
+  messagingSenderId: "727089448043",
+  appId: "1:727089448043:web:9fbe3051235646d07f1d2e"
 };
+
+
 
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
