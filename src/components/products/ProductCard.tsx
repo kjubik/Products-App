@@ -1,5 +1,11 @@
 import { Product } from "src/types";
 import { deleteProduct } from "src/services/productsServices";
+import CommentField from "../comments/CommentField";
+import { useState } from "react";
+import CommentsList from "../comments/CommentsList";
+import { getComments } from "src/services/commentsServices";
+import { Comment } from "src/types";
+
 
 interface ProductCardProps {
     product: Product;
@@ -8,12 +14,23 @@ interface ProductCardProps {
     onDelete: () => void; // Callback function to update ProductList
 }
 
+
 const ProductsCard = (props: ProductCardProps) => {
+
+    const [showComments, setShowComments] = useState(false);
+    const [comments, setComments] = useState<Comment[]>([]);
 
     const handleDelete = async () => {
         if (!props.product.id) return;
         await deleteProduct(props.product.id);
         props.onDelete();
+    }
+
+    const handleShowComments = async () => {
+        if (!props.product.id) return;
+        setShowComments(true);
+        const productComments = await getComments(props.product.id);
+        setComments(productComments);
     }
 
     return (
@@ -43,7 +60,9 @@ const ProductsCard = (props: ProductCardProps) => {
 
                 <div className="flex flex-col gap-2 px-1">
                     <h4 className="text-3xl font-bold text-slate-900 tracking-tight">
-                        {props.product.title}
+                        <a href={`/product/${props.product.id}`}>
+                            {props.product.title}
+                        </a>
                     </h4>
                     <p className="text-sm font-regular text-slate-400">
                         {props.product.description}
@@ -56,9 +75,12 @@ const ProductsCard = (props: ProductCardProps) => {
                 <p className="text-slate-400">
                     {props.product.creationDate.toDate().toLocaleString('en-GB', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })}
                 </p>
-                <input type="text" placeholder="Write a comment" className="rounded-full outline outline-1 outline-slate-300 
-                px-4 py-2 w-full placeholder-slate-400 bg-inherit text-slate-900
-                focus:outline focus:outline-2 focus:outline-blue-400"/>
+
+                <CommentField />
+
+                {showComments 
+                ? <CommentsList productId={props.product.id} /> 
+                : <button onClick={() => handleShowComments()}>Read comments</button>}
             </div>
         </>
     );
