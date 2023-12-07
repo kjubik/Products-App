@@ -1,4 +1,4 @@
-import ProductsList from 'src/components/products/ProductList';
+import ProductsList from 'src/components/products/ProductsList';
 import { useState, useEffect } from 'react';
 import { Product } from 'src/types';
 import { getProductsWithLimit } from 'src/services/productsServices';
