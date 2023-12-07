@@ -1,4 +1,4 @@
-import { Timestamp } from "firebase/firestore"
+import { CollectionReference, Timestamp } from "firebase/firestore"
 
 export type Product = {
     id?: string,
@@ -10,7 +10,7 @@ export type Product = {
     creatorUsername: string,
     imageUrl: string,
     categories: string[],
-    comments: Comment[],
+    comments?: CollectionReference<Comment>,
 }
 
 export type Comment = {
