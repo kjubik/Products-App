@@ -4,7 +4,7 @@ import { Comment } from "src/firebase/types";
 import { auth } from "src/App";
 
 
-const CommentField = () => {
+const CommentInputField = () => {
     
     const [comment, setComment] = useState({
         description: "",
@@ -35,4 +35,4 @@ const CommentField = () => {
     )
 }
 
-export default CommentField;
+export default CommentInputField;
