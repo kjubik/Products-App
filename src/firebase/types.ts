@@ -1,11 +1,11 @@
-import { CollectionReference, Timestamp } from "firebase/firestore"
+import { CollectionReference, FieldValue, Timestamp } from "firebase/firestore"
 
 export type Product = {
     id?: string,
     title: string,
     description: string,
     isDeleted: boolean,
-    creationDate: Timestamp,
+    creationDate: Timestamp | FieldValue,
     creatorUserId: string,
     creatorUsername: string,
     imageUrl: string,

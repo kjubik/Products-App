@@ -1,33 +1,36 @@
 import PublishProductForm from "src/components/products/PublishProductForm";
 import { getAuth } from "firebase/auth";
 import { useState } from "react";
-import { Product, Comment } from "src/firebase/types";
+import { Product } from "src/firebase/types";
 import { serverTimestamp } from "firebase/firestore";
 
-const NewProductPage = () => {
 
+const NewProductPage = () => {
     const auth = getAuth();
+    const userId = auth.currentUser?.uid;
 
     const [newProduct, setNewProduct] = useState<Product>({
         isDeleted: false,
-        creatorUserId: auth.currentUser?.uid,
+        creatorUserId: userId ? userId : '',
         creatorUsername: '',
-        comments: [] as Comment[],
+        comments: undefined,
         creationDate: serverTimestamp(),
-        categories: [] as string[],
         description: '',
-    } as Product);
+        title: '',
+        imageUrl: '',
+        categories: []
+    });
 
-    return(
-    <>
-        <PublishProductForm 
-            productData={newProduct} 
-            setProductData={setNewProduct}  
-            buttonText='Publish'
-            isNewProduct={true}
-        />
-    </>
-    )
+    return (
+        <>
+            <PublishProductForm 
+                productData={newProduct} 
+                setProductData={setNewProduct}  
+                buttonText='Publish'
+                isNewProduct={true}
+            />
+        </>
+    );
 }
 
 export default NewProductPage;
