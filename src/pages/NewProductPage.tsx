@@ -10,15 +10,15 @@ const NewProductPage = () => {
     const userId = auth.currentUser?.uid;
 
     const [newProduct, setNewProduct] = useState<Product>({
-        isDeleted: false,
+        categories: [],
+        comments: [],
+        creationDate: serverTimestamp(),
         creatorUserId: userId ? userId : '',
         creatorUsername: '',
-        comments: undefined,
-        creationDate: serverTimestamp(),
         description: '',
-        title: '',
         imageUrl: '',
-        categories: []
+        isDeleted: false,
+        title: '',
     });
 
     return (
