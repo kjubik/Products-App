@@ -1,7 +1,7 @@
 import PublishProductForm from "src/components/products/PublishProductForm";
 import { getAuth } from "firebase/auth";
 import { useState } from "react";
-import { Product, Comment } from "src/types";
+import { Product, Comment } from "src/firebase/types";
 import { serverTimestamp } from "firebase/firestore";
 
 const NewProductPage = () => {

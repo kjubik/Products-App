@@ -1,4 +1,4 @@
-import { Comment } from "src/types";
+import { Comment } from "src/firebase/types";
 
 
 interface CommentProps {
