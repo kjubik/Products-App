@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { postProduct, putProduct } from "src/services/productsServices";
+import { postProduct, putProduct } from "src/firebase/services/productsServices";
 import { Category, Product } from "src/firebase/types";
-import { getCategories } from "src/services/categoriesServices";
+import { getCategories } from "src/firebase/services/categoriesServices";
 import { useNavigate } from "react-router-dom";
 
 

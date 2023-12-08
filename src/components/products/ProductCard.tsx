@@ -1,9 +1,9 @@
 import { Product } from "src/firebase/types";
-import { deleteProduct } from "src/services/productsServices";
+import { deleteProduct } from "src/firebase/services/productsServices";
 import CommentField from "../comments/CommentField";
 import { useState } from "react";
 import CommentsList from "../comments/CommentsList";
-import { getComments } from "src/services/commentsServices";
+import { getComments } from "src/firebase/services/commentsServices";
 import { Comment } from "src/firebase/types";
 
 

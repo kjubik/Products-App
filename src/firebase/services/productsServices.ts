@@ -1,6 +1,6 @@
 import { doc, getDoc, getDocs, setDoc, addDoc, collection, query, orderBy, where, limit } from "firebase/firestore";
-import { db } from "../App";
-import { Product } from "../firebase/types";
+import { db } from "../../App";
+import { Product } from "../types";
 
 
 export const postProduct = async (product: Product): Promise<void> => {
