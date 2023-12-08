@@ -1,4 +1,4 @@
-import { createComment } from "src/firebase/services/commentsServices";
+import { createComment } from "src/firebase/services/comments";
 import { useState } from "react";
 import { Comment } from "src/firebase/types";
 import { auth } from "src/App";

@@ -1,7 +1,7 @@
 import ProductsList from 'src/components/products/ProductsList';
 import { useState, useEffect } from 'react';
 import { Product } from 'src/firebase/types';
-import { getProductsWithLimit } from 'src/firebase/services/productsServices';
+import { getProductsWithLimit } from 'src/firebase/services/products';
 import CreatePostButton from 'src/components/products/CreatePostButton';
 
 const ProductsPage = () => {

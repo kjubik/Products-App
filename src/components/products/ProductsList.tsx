@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
 import { Product } from "src/firebase/types";
 import { auth } from "src/App";
-import { getUser } from "src/firebase/services/usersServices";
+import { getUser } from "src/firebase/services/users";
 
 
 interface ProductListProps {
