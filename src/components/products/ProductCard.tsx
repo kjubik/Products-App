@@ -64,17 +64,18 @@ const ProductsCard = (props: ProductCardProps) => {
                             {props.product.title}
                         </a>
                     </h4>
-                    <p className="text-sm font-regular text-slate-400">
+                    <p className="text-md font-regular text-slate-400">
                         {props.product.description}
                     </p>
                 </div>
 
-                <img src={props.product.imageUrl} alt="product image" 
-                className="max-w-sm rounded" />
-
-                <p className="text-slate-400">
-                    {props.product.creationDate.toDate().toLocaleString('en-GB', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })}
-                </p>
+                <div className="flex flex-col gap-1">
+                    <img src={props.product.imageUrl} alt="product image" 
+                    className="max-w-sm rounded" />
+                    <p className="text-slate-400 text-sm px-1">
+                        {props.product.creationDate.toDate().toLocaleString('en-GB', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })}
+                    </p>
+                </div>
 
                 <CommentField />
 
