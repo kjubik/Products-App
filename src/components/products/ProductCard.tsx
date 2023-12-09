@@ -4,7 +4,7 @@ import CommentField from "../comments/CommentInputField";
 import { useState } from "react";
 import CommentsList from "../comments/CommentsList";
 import { getComments } from "src/firebase/services/comments";
-import { Comment } from "src/firebase/types";
+import { ProductComment } from "src/firebase/types";
 
 
 interface ProductCardProps {
@@ -18,7 +18,7 @@ interface ProductCardProps {
 const ProductsCard = (props: ProductCardProps) => {
 
     const [showComments, setShowComments] = useState(false);
-    const [comments, setComments] = useState<Comment[]>([]);
+    const [comments, setComments] = useState<ProductComment[]>([]);
 
     const handleDelete = async () => {
         if (!props.product.id) return;
@@ -85,7 +85,7 @@ const ProductsCard = (props: ProductCardProps) => {
                 <CommentField />
 
                 {showComments 
-                ? <CommentsList productId={props.product.id} /> 
+                ? <CommentsList comments={comments} /> 
                 : <button onClick={() => handleShowComments()}>Read comments</button>}
             </div>
         </>

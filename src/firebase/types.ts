@@ -14,7 +14,7 @@ export type Product = {
     title: string,
 }
 
-export type Comment = {
+export type ProductComment = {
     id?: string,    
     description: string,
     creationDate: Timestamp,

@@ -1,7 +1,8 @@
+import { ProductComment } from "src/firebase/types";
 
 
 interface CommentsListProps {
-    comments: Comment[];
+    comments: ProductComment[];
 }
 
 
