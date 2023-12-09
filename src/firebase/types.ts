@@ -1,13 +1,14 @@
 import { FieldValue, Timestamp } from "firebase/firestore"
 
 export type Product = {
+    id?: string,
     categories: string[],
     comments?: Comment[],
     creationDate: Timestamp | FieldValue,
+    creatorDisplayName: string,
     creatorUserId: string,
     creatorUsername: string,
     description: string,
-    id?: string,
     imageUrl: string,
     isDeleted: boolean,
     title: string,
@@ -28,6 +29,7 @@ export type Category = {
 
 export type User = {
     id?: string,
+    displayName: string,
     email: string,
     username: string,
     isAdmin: boolean,
