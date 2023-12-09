@@ -78,15 +78,15 @@ const ProductsCard = (props: ProductCardProps) => {
                     <img src={props.product.imageUrl} alt="product image" 
                     className="max-w-sm rounded" />
                     <p className="text-slate-400 text-sm px-1">
-                        {props.product.creationDate.toDate().toLocaleString('en-GB', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })}
+                        {/* {props.product.creationDate.toDate().toLocaleString('en-GB', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })} */}
                     </p>
                 </div>
 
-                <CommentField />
+                {props.product.id && <CommentField productId={props.product.id} />}
 
                 {showComments 
-                ? <CommentsList comments={comments} /> 
-                : <button onClick={() => handleShowComments()}>Read comments</button>}
+                ? <>showing comments<CommentsList comments={comments} /></> 
+                : <button onClick={handleShowComments}>Read comments</button>}
             </div>
         </>
     );
