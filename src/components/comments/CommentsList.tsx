@@ -10,7 +10,7 @@ interface CommentsListProps {
 const CommentsList = (props: CommentsListProps) => {
     return (
     <>
-        <ul className="flex flex-col gap-4">
+        <ul className="flex flex-col gap-6">
             {props.comments.map((comment) => (
                 <li key={comment.id}>
                     <CommentCard comment={comment} />
