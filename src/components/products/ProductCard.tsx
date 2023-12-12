@@ -5,6 +5,7 @@ import { useState } from "react";
 import CommentsList from "../comments/CommentsList";
 import { getComments } from "src/firebase/services/comments";
 import { ProductComment } from "src/firebase/types";
+import { convertTimestampToDate } from "src/utils/convertTimestampToDate";
 
 
 interface ProductCardProps {
@@ -73,7 +74,7 @@ const ProductsCard = (props: ProductCardProps) => {
                     <img src={props.product.imageUrl} alt="product image" 
                     className="max-w-sm rounded" />
                     <p className="text-slate-400 text-sm px-1">
-                        {/* {props.product.creationDate.toDate().toLocaleString('en-GB', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })} */}
+                        {convertTimestampToDate(props.product.creationDate)}
                     </p>
                 </div>
 
