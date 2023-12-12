@@ -11,7 +11,7 @@ interface ProductCardProps {
     product: Product;
     userIsAdmin: boolean;
     viewerId: string | undefined;
-    onDelete: () => void; // Callback function to update ProductList
+    onDelete: () => void;
 }
 
 
