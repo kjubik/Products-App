@@ -1,7 +1,9 @@
 import { createComment } from "src/firebase/services/comments";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ProductComment } from "src/firebase/types";
-// import { auth } from "src/App";
+import { serverTimestamp } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
+import { getUser } from "src/firebase/services/users";
 
 
 interface CommentInputFieldProps {
@@ -10,11 +12,30 @@ interface CommentInputFieldProps {
 
 
 const CommentInputField = (props: CommentInputFieldProps) => {
+    const auth = getAuth();
+    const userId = auth.currentUser?.uid;
     
     const [comment, setComment] = useState<ProductComment>({
         description: "",
         productId: props.productId,
+        creatorUserId: userId ? userId : '',
+        creatorUsername: "",
+        creationDate: serverTimestamp(),
     });
+
+    useEffect(() => {
+        const getUsernameOfCurrentUser = async () => {
+            if (!userId) return;
+            const userData = await getUser(userId);
+            setComment({
+                ...comment,
+                creatorUsername: userData.username,
+            })
+        }
+
+        alert('useEffect hook called');
+        getUsernameOfCurrentUser();
+    },  []);
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;

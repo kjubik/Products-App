@@ -1,4 +1,5 @@
 import { ProductComment } from "src/firebase/types";
+import CommentCard from "./CommentCard";
 
 
 interface CommentsListProps {
@@ -9,10 +10,10 @@ interface CommentsListProps {
 const CommentsList = (props: CommentsListProps) => {
     return (
     <>
-        <ul>
+        <ul className="flex flex-col gap-4">
             {props.comments.map((comment) => (
                 <li key={comment.id}>
-                    <p>{comment.description}</p>
+                    <CommentCard comment={comment} />
                 </li>
             ))}
         </ul>

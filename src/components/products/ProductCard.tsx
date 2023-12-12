@@ -38,15 +38,10 @@ const ProductsCard = (props: ProductCardProps) => {
             <div className="flex flex-col gap-4 max-w-sm p-4 rounded-lg bg-slate-50 
             outline outline-1 outline-slate-200">
                 <div className="flex w-full items-start justify-between gap-4 px-1">
-                    <span>
-                        <p className="text-slate-900 font-semibold">
-                            {props.product.creatorDisplayName}
-                        </p>
-                        <p className="text-sm text-slate-400">
-                            @{props.product.creatorUsername}
-                        </p>
-                    </span>
-                    
+                    <p className="text-slate-900 font-semibold">
+                        {props.product.creatorUsername}
+                    </p>
+                
                     <div className="flex gap-4 font-semibold"> 
                         {props.viewerId === props.product.creatorUserId && 
                             <a href={`/edit-product/${props.product.id}`}

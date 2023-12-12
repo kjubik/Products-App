@@ -3,7 +3,7 @@ import { getAuth } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { Product } from "src/firebase/types";
 import { serverTimestamp } from "firebase/firestore";
-import { getUser, getUsername } from "src/firebase/services/users";
+import { getUser } from "src/firebase/services/users";
 
 
 const NewProductPage = () => {
@@ -12,7 +12,6 @@ const NewProductPage = () => {
 
     const [newProduct, setNewProduct] = useState<Product>({
         categories: [],
-        comments: [],
         creationDate: serverTimestamp(),
         creatorUserId: userId ? userId : '',
         creatorUsername: '',
