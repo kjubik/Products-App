@@ -37,3 +37,13 @@ export const updateComment = async (comment: ProductComment) => {
         throw error;
     }
 }
+
+export const deleteComment = async (commentId: string) => {
+    try {
+        const commentReference = doc(db, "comments", commentId);
+        await setDoc(commentReference, { isDeleted: true }, { merge: true });
+    } catch (error) {
+        console.log('Failed to delete comment', error);
+        throw error;
+    }
+}
