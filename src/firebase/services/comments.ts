@@ -31,6 +31,7 @@ export const updateComment = async (comment: ProductComment) => {
     try {
         if (!comment.id) throw new Error('Comment id is missing');
         const productReference = doc(db, "comments", comment.id);
+        delete comment.id;
         await setDoc(productReference, comment, { merge: true });
     } catch (error) {
         console.log('Failed to put product', error);
