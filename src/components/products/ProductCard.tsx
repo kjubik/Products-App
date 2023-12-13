@@ -35,14 +35,10 @@ const ProductsCard = (props: ProductCardProps) => {
     }
 
     const editComment = async (commentId: string, description: string) => {
-        // Find the comment with the specified ID
         const commentToUpdate = comments.find(comment => comment.id === commentId);
         if (!commentToUpdate) return;
 
-        // Update the description field
         commentToUpdate.description = description;
-
-        // Update the comment in the database
         await updateComment(commentToUpdate);
     }
 
