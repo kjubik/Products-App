@@ -50,7 +50,6 @@ const ProductsCard = (props: ProductCardProps) => {
         setComments(filteredComments);
 
         if (!commentToDelete.id) return;
-        console.log('ProductCard: delete comment', commentToDelete.id);
         await deleteComment(commentToDelete.id);
     }
 
