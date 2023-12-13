@@ -1,5 +1,6 @@
 import { FieldValue, Timestamp } from "firebase/firestore"
 
+// TODO: Refactor each type into separate file
 
 export type Product = {
     id?: string,
