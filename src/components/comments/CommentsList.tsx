@@ -10,17 +10,23 @@ interface CommentsListProps {
 
 
 const CommentsList = (props: CommentsListProps) => {
+
+    console.log(props.comments);
+
     return (
     <>
-        <ul className="flex flex-col gap-6">
-            {props.comments
-                .filter(comment => !comment.isDeleted)
-                .map((comment) => (
-                    <li key={comment.id}>
-                        <CommentCard comment={comment} onCommentEdit={props.onEditComment} onDeleteComment={props.onDeleteComment} />
-                    </li>
-                ))}
-        </ul>
+        {props.comments.length > 0 ? 
+            <ul className="flex flex-col gap-6">
+                {props.comments
+                    .map((comment) => (
+                        <li key={comment.id}>
+                            <CommentCard comment={comment} onCommentEdit={props.onEditComment} onDeleteComment={props.onDeleteComment} />
+                        </li>
+                    ))}
+            </ul>
+            :
+            <p className="text-slate-500">No comments</p>
+        }
     </>
     )
 }
