@@ -48,6 +48,10 @@ const CommentInputField = (props: CommentInputFieldProps) => {
     const handleAddComment = async () => {
         if (!props.productId) return;
         await createComment(comment);
+        setComment({
+            ...comment,
+            description: "",
+        })
     }
 
     const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
