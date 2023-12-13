@@ -19,6 +19,7 @@ export type Product = {
 export type ProductComment = {
     id?: string,    
     description: string,
+    isDeleted: boolean,
     productId: string,
     creatorUserId: string,
     creatorUsername: string,

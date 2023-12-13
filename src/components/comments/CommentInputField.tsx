@@ -21,6 +21,7 @@ const CommentInputField = (props: CommentInputFieldProps) => {
         creatorUserId: userId ? userId : '',
         creatorUsername: "",
         creationDate: serverTimestamp(),
+        isDeleted: false,
     });
 
     useEffect(() => {

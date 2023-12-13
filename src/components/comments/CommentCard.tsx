@@ -6,6 +6,7 @@ import { useState } from "react";
 interface CommentProps {
     comment: ProductComment;
     onCommentEdit: (commentId: string, description: string) => void;
+    onDeleteComment: (commentId: string) => void;
 }
 
 
@@ -34,6 +35,11 @@ const CommentCard = (props: CommentProps) => {
         }
     }
 
+    const handleDelete = () => {
+        if (!props.comment.id) return;
+        props.onDeleteComment(props.comment.id)
+    }
+
     return (
     <>
         <div className="flex flex-col gap-1">
@@ -43,7 +49,7 @@ const CommentCard = (props: CommentProps) => {
                 </span>
                 <div className="flex gap-3 font-semibold">
                     {!showEdit && <button onClick={handleEdit} className="text-slate-800/70 hover:text-slate-800">Edit</button>}
-                    <button className="text-red-500/70 hover:text-red-500">Delete</button>
+                    <button onClick={handleDelete} className="text-red-500/70 hover:text-red-500">Delete</button>
                 </div>
             </div>
             <div className="outline outline-1 outline-slate-200 flex w-full px-4 py-2 rounded-full">

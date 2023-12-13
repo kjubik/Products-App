@@ -42,6 +42,17 @@ const ProductsCard = (props: ProductCardProps) => {
         await updateComment(commentToUpdate);
     }
 
+    const deleteComment = async (commentId: string) => {
+        const commentToDelete = comments.find(comment => comment.id === commentId);
+        if (!commentToDelete) return;
+
+        const filteredComments = comments.filter(comment => comment.id !== commentId);
+        setComments(filteredComments);
+
+        if (!commentToDelete.id) return;
+        await deleteComment(commentToDelete.id);
+    }
+
 
     return (
         <>
@@ -93,7 +104,7 @@ const ProductsCard = (props: ProductCardProps) => {
                 <>
                     <button onClick={() => setShowComments(false)}>Hide comments</button>
                     {comments.length != 0 ? 
-                    <CommentsList comments={comments} onEditComment={editComment} />
+                    <CommentsList comments={comments} onEditComment={editComment} onDeleteComment={deleteComment} />
                     : <p>No comments</p>}
                 </> 
                 : <button onClick={handleShowComments}>Show comments</button>}
