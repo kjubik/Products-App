@@ -37,6 +37,7 @@ const CommentCard = (props: CommentProps) => {
 
     const handleDelete = () => {
         if (!props.comment.id) return;
+        console.log('CommentCard: delete comment', props.comment.id);
         props.onDeleteComment(props.comment.id)
     }
 

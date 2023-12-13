@@ -3,7 +3,7 @@ import { deleteProduct } from "src/firebase/services/products";
 import CommentField from "../comments/CommentInputField";
 import { useState } from "react";
 import CommentsList from "../comments/CommentsList";
-import { getComments, updateComment } from "src/firebase/services/comments";
+import { getComments, updateComment, deleteComment } from "src/firebase/services/comments";
 import { ProductComment } from "src/firebase/types";
 import { convertTimestampToDate } from "src/utils/convertTimestampToDate";
 
@@ -42,7 +42,7 @@ const ProductsCard = (props: ProductCardProps) => {
         await updateComment(commentToUpdate);
     }
 
-    const deleteComment = async (commentId: string) => {
+    const handleDeleteComment = async (commentId: string) => {
         const commentToDelete = comments.find(comment => comment.id === commentId);
         if (!commentToDelete) return;
 
@@ -50,6 +50,7 @@ const ProductsCard = (props: ProductCardProps) => {
         setComments(filteredComments);
 
         if (!commentToDelete.id) return;
+        console.log('ProductCard: delete comment', commentToDelete.id);
         await deleteComment(commentToDelete.id);
     }
 
@@ -104,7 +105,7 @@ const ProductsCard = (props: ProductCardProps) => {
                 <>
                     <button onClick={() => setShowComments(false)}>Hide comments</button>
                     {comments.length != 0 ? 
-                    <CommentsList comments={comments} onEditComment={editComment} onDeleteComment={deleteComment} />
+                    <CommentsList comments={comments} onEditComment={editComment} onDeleteComment={handleDeleteComment} />
                     : <p>No comments</p>}
                 </> 
                 : <button onClick={handleShowComments}>Show comments</button>}
