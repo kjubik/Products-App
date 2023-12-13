@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
 import { ProductComment } from "src/firebase/types";
 import { convertTimestampToDate } from "src/utils/convertTimestampToDate";
+import { useState } from "react";
 
 
 interface CommentProps {
@@ -10,6 +10,26 @@ interface CommentProps {
 
 const CommentCard = (props: CommentProps) => {
 
+    const [showEdit, setShowEdit] = useState(false);
+
+    const handleEdit = () => {
+        setShowEdit(true);
+    }
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        setComment({
+            ...props.comment,
+            [name]: value
+        })
+    }
+
+    const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === 'Enter') {
+            // handleAddComment();
+        }
+    }
+
     return (
     <>
         <div className="flex flex-col gap-1">
@@ -18,12 +38,35 @@ const CommentCard = (props: CommentProps) => {
                     {props.comment.creatorUsername}
                 </span>
                 <div className="flex gap-3 font-semibold">
-                    <Link to='' className="text-slate-800/70 hover:text-slate-800">Edit</Link>
+                    {!showEdit && <button onClick={handleEdit} className="text-slate-800/70 hover:text-slate-800">Edit</button>}
                     <button className="text-red-500/70 hover:text-red-500">Delete</button>
                 </div>
             </div>
             <div className="outline outline-1 outline-slate-200 flex w-full px-4 py-2 rounded-full">
-                <div className="">{props.comment.description}</div>
+                {showEdit ? 
+                    <div
+                        className="w-full placeholder-slate-400 bg-inherit text-slate-900
+                        focus:outline focus:outline-2 focus:outline-blue-400
+                        flex"
+                    >
+                        <input 
+                            type="text" 
+                            name="description" 
+                            placeholder="Write a comment"
+                            value={props.comment.description} 
+                            onChange={handleInputChange} 
+                            onKeyDown={handleKeyPress}
+                            className="w-full bg-transparent outline-none"
+                        />
+                        <button 
+                            onClick={handleEdit}
+                            className=""
+                        >
+                            Save
+                        </button>
+                    </div>  
+                    : <div className="">{props.comment.description}</div>
+                }
             </div>
             <span className="flex w-full justify-end px-2 text-slate-400 text-sm">
                 {convertTimestampToDate(props.comment.creationDate)}
