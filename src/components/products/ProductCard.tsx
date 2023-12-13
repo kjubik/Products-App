@@ -80,10 +80,12 @@ const ProductsCard = (props: ProductCardProps) => {
 
                 {props.product.id && <CommentField productId={props.product.id} />}
 
-                {showComments 
-                ? <>
+                {showComments ? 
+                <>
                     <button onClick={() => setShowComments(false)}>Hide comments</button>
+                    {comments.length != 0 ? 
                     <CommentsList comments={comments} />
+                    : <p>No comments</p>}
                 </> 
                 : <button onClick={handleShowComments}>Show comments</button>}
             </div>
