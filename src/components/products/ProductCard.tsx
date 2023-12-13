@@ -3,7 +3,7 @@ import { deleteProduct } from "src/firebase/services/products";
 import CommentField from "../comments/CommentInputField";
 import { useState } from "react";
 import CommentsList from "../comments/CommentsList";
-import { getComments } from "src/firebase/services/comments";
+import { getComments, updateComment } from "src/firebase/services/comments";
 import { ProductComment } from "src/firebase/types";
 import { convertTimestampToDate } from "src/utils/convertTimestampToDate";
 
@@ -33,6 +33,19 @@ const ProductsCard = (props: ProductCardProps) => {
         const productComments = await getComments(props.product.id);
         setComments(productComments);
     }
+
+    const editComment = async (commentId: string, description: string) => {
+        // Find the comment with the specified ID
+        const commentToUpdate = comments.find(comment => comment.id === commentId);
+        if (!commentToUpdate) return;
+
+        // Update the description field
+        commentToUpdate.description = description;
+
+        // Update the comment in the database
+        await updateComment(commentToUpdate);
+    }
+
 
     return (
         <>
@@ -84,7 +97,7 @@ const ProductsCard = (props: ProductCardProps) => {
                 <>
                     <button onClick={() => setShowComments(false)}>Hide comments</button>
                     {comments.length != 0 ? 
-                    <CommentsList comments={comments} />
+                    <CommentsList comments={comments} onEditComment={editComment} />
                     : <p>No comments</p>}
                 </> 
                 : <button onClick={handleShowComments}>Show comments</button>}

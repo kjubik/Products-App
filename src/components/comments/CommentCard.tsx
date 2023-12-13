@@ -5,28 +5,32 @@ import { useState } from "react";
 
 interface CommentProps {
     comment: ProductComment;
+    onCommentEdit: (commentId: string, description: string) => void;
 }
 
 
 const CommentCard = (props: CommentProps) => {
 
     const [showEdit, setShowEdit] = useState(false);
+    const [newDescription, setNewDescription] = useState(props.comment.description);
 
     const handleEdit = () => {
         setShowEdit(true);
     }
 
+    const handleSave = () => {
+        if (!props.comment.id) return;
+        setShowEdit(false);
+        props.onCommentEdit(props.comment.id, newDescription);
+    }
+
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
-        setComment({
-            ...props.comment,
-            [name]: value
-        })
+        setNewDescription(e.target.value)
     }
 
     const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === 'Enter') {
-            // handleAddComment();
+            handleSave();
         }
     }
 
@@ -53,13 +57,13 @@ const CommentCard = (props: CommentProps) => {
                             type="text" 
                             name="description" 
                             placeholder="Write a comment"
-                            value={props.comment.description} 
+                            value={newDescription} 
                             onChange={handleInputChange} 
                             onKeyDown={handleKeyPress}
                             className="w-full bg-transparent outline-none"
                         />
                         <button 
-                            onClick={handleEdit}
+                            onClick={handleSave}
                             className=""
                         >
                             Save

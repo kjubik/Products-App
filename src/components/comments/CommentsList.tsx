@@ -4,6 +4,7 @@ import CommentCard from "./CommentCard";
 
 interface CommentsListProps {
     comments: ProductComment[];
+    onEditComment: (commentId: string, description: string) => void;
 }
 
 
@@ -13,7 +14,7 @@ const CommentsList = (props: CommentsListProps) => {
         <ul className="flex flex-col gap-6">
             {props.comments.map((comment) => (
                 <li key={comment.id}>
-                    <CommentCard comment={comment} />
+                    <CommentCard comment={comment} onCommentEdit={props.onEditComment} />
                 </li>
             ))}
         </ul>
