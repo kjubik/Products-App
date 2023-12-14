@@ -34,7 +34,6 @@ const CommentInputField = (props: CommentInputFieldProps) => {
             })
         }
 
-        alert('useEffect hook called');
         getUsernameOfCurrentUser();
     },  []);
 

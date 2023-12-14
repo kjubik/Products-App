@@ -33,7 +33,6 @@ const NewProductPage = () => {
             })
         }
 
-        alert('useEffect hook called');
         getUsernameOfCurrentUser();
     }, []);
 
