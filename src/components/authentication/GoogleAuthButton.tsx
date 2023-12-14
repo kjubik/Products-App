@@ -17,6 +17,7 @@ const GoogleAuthButton = () => {
         const newUser: User = {
           id: authResult.user.uid,
           email: authResult.user.email || '',
+          displayName: authResult.user.displayName || '',
           username: authResult.user.displayName || '',
           isAdmin: false,
         }
