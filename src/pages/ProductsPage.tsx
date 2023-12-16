@@ -3,8 +3,12 @@ import { useState, useEffect } from 'react';
 import { Product } from 'src/firebase/types';
 import { getProductsWithLimit } from 'src/firebase/services/products';
 import CreatePostButton from 'src/components/products/CreatePostButton';
+import { useNavigate } from 'react-router-dom';
+
 
 const ProductsPage = () => {
+  const navigate = useNavigate();
+
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -28,7 +32,19 @@ const ProductsPage = () => {
         <>Loading products...</>
       ) : (
         <div className='flex justify-center items-center w-screen'>
-          <ProductsList products={products} onDelete={handleDelete} />
+          {products.length > 0 ? 
+            <ProductsList products={products} onDelete={handleDelete} />
+            : <p className='py-4 flex flex-col gap-2'>
+                <span className='text-slate-400 font-semibold'>No products posted yet</span>
+                <button 
+                  onClick={() => navigate("/new-product")}
+                  className='rounded-full bg-blue-500 text-white font-semibold 
+                  px-4 py-1 flex items-center justify-around text-lg
+                  shadow-md hover:bg-blue-700'>
+                    Post the first one
+                  </button>
+              </p>
+          }
         </div>
       )}
       <div className='fixed bottom-8 right-12 items-baseline'>
