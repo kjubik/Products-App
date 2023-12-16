@@ -59,16 +59,7 @@ const PublishProductForm = ({ productData, setProductData, isNewProduct, buttonT
         }
     }
 
-    const validateProductForm = () => {
-        return true;
-    }
-
     const handlePublishPost = async () => {
-        if (!validateProductForm()) {
-            alert('Please fill all the fields');
-            return;
-        }
-            
         console.log(productData);
         if (isNewProduct) {
             await postProduct(productData);
@@ -77,7 +68,6 @@ const PublishProductForm = ({ productData, setProductData, isNewProduct, buttonT
         }
 
         navigate('/products');
-        return;
     }
 
     return (
@@ -89,7 +79,7 @@ const PublishProductForm = ({ productData, setProductData, isNewProduct, buttonT
                 focus:outline-2 focus:outline-blue-400"/>
 
                 <input name="title" 
-                onChange={handleInputChange} type="text" placeholder="Product title" value={productData.title}
+                onChange={handleInputChange} type="text" placeholder="Enter product title" value={productData.title}
                 className="focus:outline-none bg-inherit text-2xl font-semibold"/>
 
                 <div className="flex flex-col gap-1">
