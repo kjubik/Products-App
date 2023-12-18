@@ -1,6 +1,3 @@
-import { initializeApp } from 'firebase/app'
-import { getAuth } from 'firebase/auth'
-import { getFirestore } from 'firebase/firestore'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import ProductsPage from './pages/ProductsPage';
@@ -10,6 +7,9 @@ import Navbar from 'src/components/common/Navbar';
 import ProductPage from 'src/pages/ProductPage';
 import NewProductPage from './pages/NewProductPage';
 import EditProductPage from './pages/EditProductPage';
+import { initializeApp } from 'firebase/app'
+import { getAuth } from 'firebase/auth'
+import { getFirestore } from 'firebase/firestore'
 
 
 const firebaseConfig = {
@@ -21,14 +21,13 @@ const firebaseConfig = {
   appId: "1:727089448043:web:9fbe3051235646d07f1d2e"
 };
 
-
-
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
+console.log('Firebase app initialized');
+
 
 function App() {
-
   return (
     <>
     <div className='bg-slate-50 h-full min-h-screen'>
