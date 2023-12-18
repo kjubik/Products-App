@@ -1,6 +1,6 @@
 import ProductsList from 'src/components/products/ProductsList';
 import { useState, useEffect } from 'react';
-import { Product } from 'src/firebase/types';
+import { Product } from 'src/types/Product';
 import { getProductsWithLimit } from 'src/firebase/services/products';
 import CreatePostButton from 'src/components/products/CreatePostButton';
 import { useNavigate } from 'react-router-dom';

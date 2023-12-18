@@ -1,10 +1,10 @@
-import { Product } from "src/firebase/types";
+import { Product } from "src/types/Product";
 import { deleteProduct } from "src/firebase/services/products";
 import CommentField from "../comments/CommentInputField";
 import { useState } from "react";
 import CommentsList from "../comments/CommentsList";
 import { getUndeletedComments, updateComment, deleteComment } from "src/firebase/services/comments";
-import { ProductComment } from "src/firebase/types";
+import { ProductComment } from "src/types/ProductComment";
 import { convertTimestampToDate } from "src/utils/convertTimestampToDate";
 
 

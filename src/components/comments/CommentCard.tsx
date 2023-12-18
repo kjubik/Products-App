@@ -1,4 +1,4 @@
-import { ProductComment } from "src/firebase/types";
+import { ProductComment } from "src/types/ProductComment";
 import { convertTimestampToDate } from "src/utils/convertTimestampToDate";
 import { useState } from "react";
 

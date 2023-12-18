@@ -1,6 +1,6 @@
 import PublishProductForm from "src/components/products/PublishProductForm";
 import { useState } from "react";
-import { Product } from "src/firebase/types";
+import { Product } from "src/types/Product";
 import { getProduct } from "src/firebase/services/products";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";

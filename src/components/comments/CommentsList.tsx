@@ -1,4 +1,4 @@
-import { ProductComment } from "src/firebase/types";
+import { ProductComment } from "src/types/ProductComment";
 import CommentCard from "./CommentCard";
 
 

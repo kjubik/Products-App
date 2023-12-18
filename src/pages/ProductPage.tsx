@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import ProductsCard from "src/components/products/ProductCard";
 import { useEffect, useState } from "react";
 import { getProduct } from "src/firebase/services/products";
-import { Product } from "src/firebase/types";
+import { Product } from "src/types/Product";
 import { isUserAdmin } from "src/firebase/services/users";
 import { getAuth } from "firebase/auth";
 
