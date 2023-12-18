@@ -81,9 +81,7 @@ const ProductsCard = (props: ProductCardProps) => {
 
                 <div className="flex flex-col gap-2 px-1">
                     <h4 className="text-3xl font-bold text-slate-900 tracking-tight">
-                        <a href={`/product/${props.product.id}`}>
-                            {props.product.title}
-                        </a>
+                        {props.product.title}
                     </h4>
                     <p className="text-md font-regular text-slate-400">
                         {props.product.description}
