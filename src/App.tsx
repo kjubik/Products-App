@@ -2,8 +2,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import ProductsPage from './pages/ProductsPage';
 import ProfilePage from './pages/ProfilePage';
-import ProtectedRoutes from 'src/components/common/ProtectedRoutes';
-import Navbar from 'src/components/common/Navbar';
+import ProtectedRoutes from 'src/components/navigation/ProtectedRoutes';
+import Navbar from 'src/components/navigation/Navbar';
 import NewProductPage from './pages/NewProductPage';
 import EditProductPage from './pages/EditProductPage';
 import { initializeApp } from 'firebase/app'
