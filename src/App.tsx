@@ -9,6 +9,7 @@ import EditProductPage from './pages/EditProductPage';
 import { initializeApp } from 'firebase/app'
 import { getAuth } from 'firebase/auth'
 import { getFirestore } from 'firebase/firestore'
+import UsersPage from './pages/UsersPage';
 
 
 const firebaseConfig = {
@@ -39,6 +40,7 @@ function App() {
             <Route path='/profile' element={<ProfilePage />} />
             <Route path='/new-product' element={<NewProductPage/>} />
             <Route path='/edit-product/:productId' element={<EditProductPage />} />
+            <Route path='/users' element={<UsersPage/>}/>
           </Route>
         </Routes>
       </Router>

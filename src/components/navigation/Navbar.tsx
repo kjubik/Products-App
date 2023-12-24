@@ -29,6 +29,7 @@ const Navbar = () => {
             <ul className="flex gap-8">
                 <li><Link to="/products" className="text-blue-500 hover:text-blue-700 font-semibold">Products</Link></li>
                 <li><Link to="/profile" className="text-blue-500 hover:text-blue-700 font-semibold">Profile</Link></li>
+                <li><Link to="/users" className="text-blue-500 hover:text-blue-700 font-semibold">Users</Link></li>
             </ul>
             {isAuthed ? <SignOutButton /> : <GoogleAuthButton />}
         </nav>
