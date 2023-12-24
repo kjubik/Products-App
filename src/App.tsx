@@ -34,8 +34,8 @@ function App() {
         <Navbar />
         <Routes>
           <Route path='/' element={<HomePage />} />
-          <Route path='/products' element={<ProductsPage />} />
           <Route element={<ProtectedRoutes />}>
+            <Route path='/products' element={<ProductsPage />} />
             <Route path='/profile' element={<ProfilePage />} />
             <Route path='/new-product' element={<NewProductPage/>} />
             <Route path='/edit-product/:productId' element={<EditProductPage />} />
