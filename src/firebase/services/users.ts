@@ -1,4 +1,4 @@
-import { getDoc, setDoc, doc } from "firebase/firestore";
+import { getDoc, getDocs, collection, setDoc, doc } from "firebase/firestore";
 import { db } from "../../App";
 import { User } from "src/types/User";
 
@@ -46,6 +46,21 @@ export const isUserAdmin = async (userId: string): Promise<boolean> => {
         return queryResult.data().isAdmin as boolean;
     } catch (error) {
         console.log('Failed to get username', error);
+        throw error;
+    }
+}
+
+export const getAllUsers = async (): Promise<User[]> => {
+    try {
+        const querySnapshot = await getDocs(collection(db, "users"));
+        const users: User[] = [];
+        querySnapshot.forEach((doc) => {
+            users.push(doc.data() as User);
+        });
+        console.log('users', users);
+        return users;
+    } catch (error) {
+        console.log('Failed to get all users', error);
         throw error;
     }
 }
