@@ -3,18 +3,25 @@ import SignOutButton from "../authentication/SignOutButton";
 import { useState, useEffect } from "react";
 import { onAuthStateChanged, getAuth } from "firebase/auth";
 import { Link } from "react-router-dom";
+import { getAdminStatus } from "src/firebase/getAdminStatus";
 
 
 const Navbar = () => {
 
     const [isAuthed, setIsAuthed] = useState<boolean | null>(null);
+    const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
 
     useEffect(() => {
+        const checkIfAdmin = async () => {
+            setIsAdmin(await getAdminStatus());
+        }
+
         const auth = getAuth();
         onAuthStateChanged(auth, (firebaseUser) => {
             if (firebaseUser) {
                 console.log('allowing access to protected routes');
                 setIsAuthed(true);
+                checkIfAdmin();
             } else {
                 console.log('denied access to protected routes');
                 setIsAuthed(false);
@@ -29,7 +36,7 @@ const Navbar = () => {
             <ul className="flex gap-8">
                 <li><Link to="/products" className="text-blue-500 hover:text-blue-700 font-semibold">Products</Link></li>
                 <li><Link to="/profile" className="text-blue-500 hover:text-blue-700 font-semibold">Profile</Link></li>
-                <li><Link to="/users" className="text-blue-500 hover:text-blue-700 font-semibold">Users</Link></li>
+                {isAdmin && <li><Link to="/users" className="text-blue-500 hover:text-blue-700 font-semibold">Users</Link></li>}
             </ul>
             {isAuthed ? <SignOutButton /> : <GoogleAuthButton />}
         </nav>
