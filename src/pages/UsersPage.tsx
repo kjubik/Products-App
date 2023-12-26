@@ -22,7 +22,7 @@ const UsersPage = () => {
     
     return(<>
         <h1>Users Page</h1>
-        {isLoaded ? <UsersList /> : <p>Loading users...</p>}
+        {isLoaded ? <UsersList users={users} /> : <p>Loading users...</p>}
     </>)
 }
 
