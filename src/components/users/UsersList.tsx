@@ -5,11 +5,22 @@ const UsersList = ({users}: {users: User[]}) => {
 
     return (
         <div>
-            <ul>
-                {users.map((user) => (
-                    <UserTableRow user={user} />
-                ))}
-            </ul>
+            <table className="w-full">
+                <thead>
+                    <tr>
+                        <th>User ID</th>
+                        <th>Username</th>
+                        <th>Display Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {users.map((user) => (
+                        <UserTableRow key={user.id} user={user} />
+                    ))}
+                </tbody>
+            </table>
         </div>
     );
 }

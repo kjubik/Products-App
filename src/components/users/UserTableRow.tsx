@@ -4,9 +4,14 @@ const UserTableRow = ({ user }: {user: User}) => {
 
 
     return (
-        <li key={user.id}>
-            {user.displayName} - {user.email}
-        </li>
+        <tr key={user.id}>
+            <td>{user.id}</td>
+            <td>{user.username}</td>
+            <td>{user.displayName}</td>
+            <td>{user.email}</td>
+            <td>{user.isAdmin ? 'Admin' : 'User'}</td>
+            <td><button>{user.isAdmin ? 'Remove' : 'Upgrade'}</button></td>
+        </tr>
     );
 };
 
