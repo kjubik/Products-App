@@ -1,6 +1,6 @@
 import { db } from "src/App";
 import { addDoc, getDocs, collection, orderBy, query } from "firebase/firestore";
-import { Category } from "src/types/Category";
+import { Category } from "src/firebase/types/Category";
 
 
 export const postCategory = async (name: string) => {

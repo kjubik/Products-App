@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getAuth } from 'firebase/auth';
 import { getUser } from '../firebase/services/users';
-import { User } from 'src/types/User';
+import { User } from 'src/firebase/types/User';
 
 const ProfilePage = () => {
   const [user, setUser] = useState<User | null>(null);

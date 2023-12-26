@@ -1,5 +1,5 @@
 import { db } from 'src/App';
-import { ProductComment } from 'src/types/ProductComment';
+import { ProductComment } from 'src/firebase/types/ProductComment';
 import { collection, addDoc, query, getDocs, setDoc, orderBy, where, doc } from 'firebase/firestore';
 
 

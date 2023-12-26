@@ -1,5 +1,5 @@
 import { getAdditionalUserInfo, getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { User } from "src/types/User";
+import { User } from "src/firebase/types/User";
 import { postUser } from "../../firebase/services/users";
 import { useNavigate } from "react-router-dom";
 

@@ -1,6 +1,6 @@
 import { createComment } from "src/firebase/services/comments";
 import { useEffect, useState } from "react";
-import { ProductComment } from "src/types/ProductComment";
+import { ProductComment } from "src/firebase/types/ProductComment";
 import { serverTimestamp } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { getUser } from "src/firebase/services/users";

@@ -1,7 +1,7 @@
 import PublishProductForm from "src/components/products/PublishProductForm";
 import { getAuth } from "firebase/auth";
 import { useEffect, useState } from "react";
-import { Product } from "src/types/Product";
+import { Product } from "src/firebase/types/Product";
 import { serverTimestamp } from "firebase/firestore";
 import { getUser } from "src/firebase/services/users";
 
