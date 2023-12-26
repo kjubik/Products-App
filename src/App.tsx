@@ -10,6 +10,7 @@ import { initializeApp } from 'firebase/app'
 import { getAuth } from 'firebase/auth'
 import { getFirestore } from 'firebase/firestore'
 import UsersPage from './pages/UsersPage';
+import AdminRoutes from './components/navigation/AdminRoutes';
 
 
 const firebaseConfig = {
@@ -40,7 +41,9 @@ function App() {
             <Route path='/profile' element={<ProfilePage />} />
             <Route path='/new-product' element={<NewProductPage/>} />
             <Route path='/edit-product/:productId' element={<EditProductPage />} />
-            <Route path='/users' element={<UsersPage />} />
+            <Route element={<AdminRoutes />}>
+              <Route path='/users' element={<UsersPage />} />
+            </Route>
           </Route>
         </Routes>
       </Router>
