@@ -64,3 +64,14 @@ export const getAllUsers = async (): Promise<User[]> => {
         throw error;
     }
 }
+
+export const updateUser = async (userId: string, user: User): Promise<void> => {
+    try {
+        if (!userId) throw new Error('User id is missing');
+        const productReference = doc(db, "users", userId);
+        await setDoc(productReference, user, { merge: true });
+    } catch (error) {
+        console.log('Failed to put product', error);
+        throw error;
+    }
+}
