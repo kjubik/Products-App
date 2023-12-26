@@ -2,7 +2,6 @@ import ProductsList from 'src/components/products/ProductsList';
 import { useState, useEffect } from 'react';
 import { Product } from 'src/firebase/types/Product';
 import { getProductsWithLimit } from 'src/firebase/services/products';
-import CreatePostButton from 'src/components/products/CreatePostButton';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -48,7 +47,12 @@ const ProductsPage = () => {
         </div>
       )}
       <div className='fixed bottom-8 right-12 items-baseline'>
-        <CreatePostButton />
+        <button onClick={() => navigate("/new-product")}
+          className="rounded-full bg-blue-500 text-white font-semibold 
+          px-4 py-1 flex items-center justify-around text-lg
+          shadow-md hover:bg-blue-700">
+              Post product
+          </button>
       </div>
     </>
   );
