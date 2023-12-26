@@ -40,7 +40,6 @@ function App() {
             <Route path='/profile' element={<ProfilePage />} />
             <Route path='/new-product' element={<NewProductPage/>} />
             <Route path='/edit-product/:productId' element={<EditProductPage />} />
-            <Route path='/users' element={<UsersPage/>}/>
           </Route>
         </Routes>
       </Router>
