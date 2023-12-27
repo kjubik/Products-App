@@ -5,6 +5,8 @@ import { getProductsWithLimit } from 'src/firebase/services/products';
 import { useNavigate } from 'react-router-dom';
 import { Category } from 'src/firebase/types/Category';
 import { getCategories } from 'src/firebase/services/categories';
+import { SelectValue } from 'react-tailwindcss-select/dist/components/type';
+import Select from 'react-tailwindcss-select';
 
 
 const ProductsPage = () => {
@@ -13,6 +15,8 @@ const ProductsPage = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [options, setOptions] = useState<Category[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+
+  const [selectedCategories, setSelectedCategories] = useState<SelectValue>([]);
 
   useEffect(() => {
     const loadPageData = async () => {
@@ -38,7 +42,18 @@ const ProductsPage = () => {
       {isLoading ? (
         <>Loading products & categories...</>
       ) : (
-        <div className='flex justify-center items-center w-screen'>
+        <div className='flex flex-col justify-center items-center w-screen'>
+          <span className='flex w-full'>
+            <Select 
+              value={selectedCategories}
+              onChange={setSelectedCategories}
+              options={options}
+              isMultiple={true}
+              primaryColor={'blue'}
+              placeholder='Filter by category'
+              isClearable={true}
+            />
+          </span>
           {products.length > 0 ? 
             <ProductsList products={products} onDelete={handleDelete} />
             : <p className='py-4 flex flex-col gap-2'>
