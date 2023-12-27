@@ -23,7 +23,8 @@ const ProductsPage = () => {
       const productDocuments = await getProductsWithLimit(100);
       setProducts(productDocuments);
       
-      const categoryDocuments = await getCategories();
+      let categoryDocuments = await getCategories();
+      categoryDocuments = categoryDocuments.sort((a, b) => a.value.localeCompare(b.value));
       setOptions(categoryDocuments); 
       console.log('options:', options);
       
