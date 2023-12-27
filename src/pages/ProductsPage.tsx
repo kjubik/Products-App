@@ -3,22 +3,30 @@ import { useState, useEffect } from 'react';
 import { Product } from 'src/firebase/types/Product';
 import { getProductsWithLimit } from 'src/firebase/services/products';
 import { useNavigate } from 'react-router-dom';
+import { Category } from 'src/firebase/types/Category';
+import { getCategories } from 'src/firebase/services/categories';
 
 
 const ProductsPage = () => {
   const navigate = useNavigate();
 
   const [products, setProducts] = useState<Product[]>([]);
+  const [options, setOptions] = useState<Category[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const getProductsFromFirestore = async () => {
-      const productsFromFirestore = await getProductsWithLimit(100);
-      setProducts(productsFromFirestore);
+    const loadPageData = async () => {
+      const productDocuments = await getProductsWithLimit(100);
+      setProducts(productDocuments);
+      
+      const categoryDocuments = await getCategories();
+      setOptions(categoryDocuments); 
+      console.log('options:', options);
+      
       setIsLoading(false);
     };
 
-    getProductsFromFirestore();
+    loadPageData();
   }, []);
 
   const handleDelete = async (deletedProductId: string | undefined) => {
@@ -28,7 +36,7 @@ const ProductsPage = () => {
   return (
     <>
       {isLoading ? (
-        <>Loading products...</>
+        <>Loading products & categories...</>
       ) : (
         <div className='flex justify-center items-center w-screen'>
           {products.length > 0 ? 
