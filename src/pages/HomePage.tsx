@@ -18,6 +18,7 @@ const HomePage = () => {
 
     return (
         <>
+            <span className="flex max-w-sm">
             <Select 
                 value={animal}
                 onChange={handleChange}
@@ -25,6 +26,7 @@ const HomePage = () => {
                 isMultiple={true}
                 primaryColor={'blue'}
             />
+            </span>
             {animal && Array.isArray(animal) && animal.map((item) => (
                     <div key={item.value}>{item.label}</div>
             ))}
