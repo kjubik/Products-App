@@ -1,5 +1,5 @@
 import { db } from "src/App";
-import { addDoc, getDocs, collection, orderBy, query } from "firebase/firestore";
+import { addDoc, getDocs, collection } from "firebase/firestore";
 import { Category } from "src/firebase/types/Category";
 
 
@@ -16,12 +16,11 @@ export const postCategory = async (name: string) => {
 
 
 export const getCategories = async (): Promise<Category[]> => {
-  const categoriesRef = collection(db, 'categories');
-  
   try {
-    const q = await query(categoriesRef ,orderBy('name', 'asc'));
-    const querySnapshot = await getDocs(q);
-    const categories: Category[] = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }) as Category);
+    const categoriesRef = collection(db, 'categories');
+    const querySnapshot = await getDocs(categoriesRef);
+    const categories: Category[] = querySnapshot.docs.map((doc) => ({...doc.data() }) as Category);
+    console.log('Categories fetched successfully!', categories)
     return categories;
   } catch (error) {
     console.error('Error getting categories:', error);
