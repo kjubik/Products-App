@@ -17,6 +17,7 @@ const ProductsPage = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const [selectedCategories, setSelectedCategories] = useState<SelectValue>([]);
+  const [filtersUpdated, setFiltersUpdated] = useState<boolean | null>(null);
 
   useEffect(() => {
     const loadPageData = async () => {
@@ -29,10 +30,17 @@ const ProductsPage = () => {
       console.log('options:', options);
       
       setIsLoading(false);
+      if (filtersUpdated == null) setFiltersUpdated(false);
     };
 
     loadPageData();
   }, []);
+
+  useEffect(() => {
+    if (filtersUpdated == null) return;
+    console.log('filters have been updated!');
+    setFiltersUpdated(true);
+  }, [selectedCategories])
 
   const handleDelete = async (deletedProductId: string | undefined) => {
     setProducts(products.filter(product => product.id !== deletedProductId));
@@ -55,6 +63,9 @@ const ProductsPage = () => {
               isClearable={true}
             />
           </span>
+          {filtersUpdated && (
+            <button onClick={() => setFiltersUpdated(false)}>Search</button>
+          )}
           {products.length > 0 ? 
             <ProductsList products={products} onDelete={handleDelete} />
             : <p className='py-4 flex flex-col gap-2'>
