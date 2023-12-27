@@ -19,11 +19,11 @@ const HomePage = () => {
     return (
         <>
             <Select 
-                    value={animal}
-                    onChange={handleChange}
-                    options={options} 
-                    isMultiple={true}
-                    primaryColor={'blue'}
+                value={animal}
+                onChange={handleChange}
+                options={options} 
+                isMultiple={true}
+                primaryColor={'blue'}
             />
             {animal && Array.isArray(animal) && animal.map((item) => (
                     <div key={item.value}>{item.label}</div>
