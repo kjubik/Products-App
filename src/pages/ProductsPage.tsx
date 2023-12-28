@@ -64,7 +64,7 @@ const ProductsPage = () => {
             />
           </span>
           {filtersUpdated && (
-            <button onClick={() => setFiltersUpdated(false)}>Search</button>
+            <button onClick={() => setFiltersUpdated(false)}>Apply filters</button>
           )}
           {products.length > 0 ? 
             <ProductsList products={products} onDelete={handleDelete} />
