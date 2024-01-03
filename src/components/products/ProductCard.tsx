@@ -5,7 +5,7 @@ import { useState } from "react";
 import CommentsList from "../comments/CommentsList";
 import { getUndeletedComments, updateComment, deleteComment } from "src/firebase/services/comments";
 import { ProductComment } from "src/firebase/types/ProductComment";
-import { convertTimestampToDate } from "src/utils/convertTimestampToDate";
+import { convertTimestampToDate } from "src/firebase/utils/convertTimestampToDate";
 
 
 interface ProductCardProps {

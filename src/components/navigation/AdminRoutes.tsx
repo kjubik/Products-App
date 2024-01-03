@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { getAdminStatus } from "src/firebase/getAdminStatus";
+import { getAdminStatus } from "src/firebase/utils/getAdminStatus";
 
 const AdminRoutes = () => {
 

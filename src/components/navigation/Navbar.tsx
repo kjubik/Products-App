@@ -3,7 +3,7 @@ import SignOutButton from "../authentication/SignOutButton";
 import { useState, useEffect } from "react";
 import { onAuthStateChanged, getAuth } from "firebase/auth";
 import { Link } from "react-router-dom";
-import { getAdminStatus } from "src/firebase/getAdminStatus";
+import { getAdminStatus } from "src/firebase/utils/getAdminStatus";
 
 
 const Navbar = () => {
