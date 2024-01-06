@@ -19,7 +19,7 @@ export const getCategories = async (): Promise<Category[]> => {
   try {
     const categoriesRef = collection(db, 'categories');
     const querySnapshot = await getDocs(categoriesRef);
-    const categories: Category[] = querySnapshot.docs.map((doc) => ({...doc.data() }) as Category);
+    const categories: Category[] = querySnapshot.docs.map((doc) => ({ value: doc.id, ...doc.data() }) as Category);
     console.log('Categories fetched successfully!', categories)
     return categories;
   } catch (error) {
