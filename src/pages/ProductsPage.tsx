@@ -1,7 +1,7 @@
 import ProductsList from 'src/components/products/ProductsList';
 import { useState, useEffect } from 'react';
 import { Product } from 'src/firebase/types/Product';
-import { getProductsWithLimit } from 'src/firebase/services/products';
+import { getProductsByCategory, getProductsWithLimit } from 'src/firebase/services/products';
 import { useNavigate } from 'react-router-dom';
 import { Category } from 'src/firebase/types/Category';
 import { getCategories } from 'src/firebase/services/categories';
@@ -12,16 +12,15 @@ import Select from 'react-tailwindcss-select';
 const ProductsPage = () => {
   const navigate = useNavigate();
 
+  const [isLoading, setIsLoading] = useState(true);
   const [products, setProducts] = useState<Product[]>([]);
   const [options, setOptions] = useState<Category[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  const [selectedCategories, setSelectedCategories] = useState<SelectValue>([]);
   const [filtersUpdated, setFiltersUpdated] = useState<boolean | null>(null);
+  const [selectedOptions, setSelectedOptions] = useState<SelectValue>([]);
 
   useEffect(() => {
     const loadPageData = async () => {
-      const productDocuments = await getProductsWithLimit(100);
+      const productDocuments = await getProductsWithLimit(3);
       setProducts(productDocuments);
       
       let categoryDocuments = await getCategories();
@@ -40,13 +39,26 @@ const ProductsPage = () => {
     if (filtersUpdated == null) return;
     console.log('filters have been updated!');
     setFiltersUpdated(true);
-  }, [selectedCategories])
+  }, [selectedOptions])
 
   const handleDelete = async (deletedProductId: string | undefined) => {
     setProducts(products.filter(product => product.id !== deletedProductId));
   }
 
-  const handleApplyFilters = () => {
+  const handleApplyFilters = async () => {
+
+    if (selectedOptions == null) {
+      const productDocuments = await getProductsWithLimit(3);
+      setProducts(productDocuments);
+    } else if (Array.isArray(selectedOptions)) {
+      const selectedCategories: string[] = selectedOptions.map(option => option.value);
+      const productDocuments = await getProductsByCategory(selectedCategories);
+      setProducts(productDocuments);
+    } else {
+      const productDocuments = await getProductsByCategory([selectedOptions.value]);
+      setProducts(productDocuments);
+    }
+
     setFiltersUpdated(false);
   }
 
@@ -58,8 +70,8 @@ const ProductsPage = () => {
         <div className='flex flex-col justify-center items-center w-screen'>
           <span className='flex w-full'>
             <Select 
-              value={selectedCategories}
-              onChange={setSelectedCategories}
+              value={selectedOptions}
+              onChange={setSelectedOptions}
               options={options}
               isMultiple={true}
               primaryColor={'blue'}
