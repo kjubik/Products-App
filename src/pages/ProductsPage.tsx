@@ -25,7 +25,7 @@ const ProductsPage = () => {
       setProducts(productDocuments);
       
       let categoryDocuments = await getCategories();
-      categoryDocuments = categoryDocuments.sort((a, b) => a.value.localeCompare(b.value));
+      // categoryDocuments = categoryDocuments.sort((a, b) => a.value.localeCompare(b.value));
       setOptions(categoryDocuments); 
       console.log('options:', options);
       
