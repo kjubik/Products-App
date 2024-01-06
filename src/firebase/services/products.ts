@@ -51,13 +51,23 @@ export const getProductsWithLimit = async (docLimit: number): Promise<Product[]>
     }
 }
 
-export const getProductsByCategory = async (category: string): Promise<Product[]> => {
+export const getProductsByCategory = async (selectedCategories: string[]): Promise<Product[]> => {
     try {
         const productsReference = collection(db, "products");
-        const q = query(productsReference, orderBy("creationDate", "desc"), where("isDeleted", "==", false), where("categories", "array-contains", category));
+        const q = query(productsReference, orderBy("creationDate", "desc"), where("isDeleted", "==", false), where("categories", "array-contains-any", selectedCategories));
         const querySnapshot = await getDocs(q);
-        const products: Product[] = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }) as Product);
-        return products;
+
+        const matchingProducts: Product[] = [];
+
+        querySnapshot.docs.forEach(doc => {
+            const productData = doc.data();
+            const productCategories = productData.categories;
+            if (selectedCategories.every(category => productCategories.includes(category))) {
+                matchingProducts.push({ id: doc.id, ...doc.data() } as Product);
+            }
+        });
+        
+        return matchingProducts;
     } catch (error) {
         console.log('Failed to get products by category', error);
         throw error;
