@@ -46,6 +46,10 @@ const ProductsPage = () => {
     setProducts(products.filter(product => product.id !== deletedProductId));
   }
 
+  const handleApplyFilters = () => {
+    setFiltersUpdated(false);
+  }
+
   return (
     <>
       {isLoading ? (
@@ -64,7 +68,7 @@ const ProductsPage = () => {
             />
           </span>
           {filtersUpdated && (
-            <button onClick={() => setFiltersUpdated(false)}>Apply filters</button>
+            <button onClick={handleApplyFilters}>Apply filters</button>
           )}
           {products.length > 0 ? 
             <ProductsList products={products} onDelete={handleDelete} />
