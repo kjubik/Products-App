@@ -1,7 +1,7 @@
 import ProductsList from 'src/components/products/ProductsList';
 import { useState, useEffect } from 'react';
 import { Product } from 'src/firebase/types/Product';
-import { getProductsByCategory, getProductsWithLimit } from 'src/firebase/services/products';
+import { getProductsByCategory, getProductsBySearch, getProductsWithLimit } from 'src/firebase/services/products';
 import { useNavigate } from 'react-router-dom';
 import { Category } from 'src/firebase/types/Category';
 import { getCategories } from 'src/firebase/services/categories';
@@ -17,6 +17,8 @@ const ProductsPage = () => {
   const [options, setOptions] = useState<Category[]>([]);
   const [filtersUpdated, setFiltersUpdated] = useState<boolean | null>(null);
   const [selectedOptions, setSelectedOptions] = useState<SelectValue>([]);
+
+  const [searchInput, setSearchInput] = useState<string>('');
 
   useEffect(() => {
     const loadPageData = async () => {
@@ -62,13 +64,40 @@ const ProductsPage = () => {
     setFiltersUpdated(false);
   }
 
+  const handleSearch = async () => {
+    if (searchInput === '') {
+      const productDocuments = await getProductsWithLimit(3);
+      setProducts(productDocuments);
+    } else {
+      const productDocuments = await getProductsBySearch(searchInput);
+      setProducts(productDocuments);
+    }
+  }
+
   return (
     <>
       {isLoading ? (
         <>Loading products & categories...</>
       ) : (
         <div className='flex flex-col justify-center items-center w-screen'>
-          <span className='flex w-full'>
+          <span className='flex flex-col gap-2 w-full'>
+            <div className='flex w-1/2 mx-auto'>
+              <input 
+                className='rounded-full border-2 border-slate-400 px-4 py-1 flex-grow mr-2'
+                type='text'
+                placeholder='Search products'
+                value={searchInput}
+                onChange={(e) => setSearchInput(e.target.value)}
+              />
+              <button 
+                className='rounded-full bg-blue-500 text-white font-semibold 
+                px-4 py-1 flex items-center justify-around text-lg
+                shadow-md hover:bg-blue-700'
+                onClick={handleSearch}
+              >
+                Search
+              </button>
+            </div>
             <Select 
               value={selectedOptions}
               onChange={setSelectedOptions}

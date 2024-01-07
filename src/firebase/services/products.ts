@@ -100,7 +100,7 @@ export const deleteProduct = async (productId: string): Promise<void> => {
 export const getProductsBySearch = async (searchTerm: string): Promise<Product[]> => {
     try {
         const productsReference = collection(db, "products");
-        const q = query(productsReference, orderBy("creationDate", "desc"), where("isDeleted", "==", false), where("name", ">=", searchTerm), where("name", "<=", searchTerm + "\uf8ff"));
+        const q = query(productsReference, orderBy("title"), where("isDeleted", "==", false), where("title", ">=", searchTerm), where("title", "<=", searchTerm + "\uf8ff"));
         const querySnapshot = await getDocs(q);
         const products = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }) as Product);
         return products;
