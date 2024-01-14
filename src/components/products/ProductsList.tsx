@@ -27,7 +27,7 @@ const ProductsList = (props: ProductListProps) => {
 
     return (
     <>
-        <ul className="column-1 gap-4">
+        <ul className="flex column-1 gap-4">
             {props.products.map((product) => {
                 return (
                     <li key={product.id} 
