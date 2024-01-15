@@ -94,6 +94,7 @@ const ProductsPage = () => {
                 placeholder='Search products'
                 value={searchInput}
                 onChange={(e) => setSearchInput(e.target.value)}
+                onKeyDown={(e) => {if (e.key === 'Enter') {handleSearch();}}}
               />
               <button 
                 className='rounded-full bg-blue-500 text-white font-semibold 
