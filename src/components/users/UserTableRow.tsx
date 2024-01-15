@@ -18,7 +18,7 @@ const UserTableRow = ({ user }: {user: User}) => {
             {/* <td>{user.id}</td> */}
             <td>{user.username}</td>
             <td>{user.email}</td>
-            <td>{user.isAdmin ? 'Admin' : 'User'}</td>
+            <td>{userRole ? 'Admin' : 'User'}</td>
             <td><button onClick={handleChangeRole}>{userRole ? 'Remove' : 'Upgrade'}</button></td>
         </tr>
     );
