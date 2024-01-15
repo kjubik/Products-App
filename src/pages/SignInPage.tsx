@@ -1,5 +1,5 @@
 import GoogleAuthButton from "src/components/authentication/GoogleAuthButton";
-import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
+import { signInWithEmailAndPassword, getAuth, UserCredential } from "firebase/auth";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -14,8 +14,9 @@ const SignInPage = () => {
     
     const handleSignIn = () => {
         signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            const user = userCredential.user;
+        .then((userCredential: UserCredential) => {
+            console.log('userCredential', userCredential)
+            // const user = userCredential.user;
             navigate("/products");
         })
         .catch((error) => {
