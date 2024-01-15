@@ -8,6 +8,7 @@ import { getUser } from "src/firebase/services/users";
 
 interface CommentInputFieldProps {
     productId: string;
+    handleUpdateComments: () => void;
 }
 
 
@@ -52,6 +53,7 @@ const CommentInputField = (props: CommentInputFieldProps) => {
             ...comment,
             description: "",
         })
+        await props.handleUpdateComments();
     }
 
     const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {

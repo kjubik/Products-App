@@ -96,7 +96,7 @@ const ProductsCard = (props: ProductCardProps) => {
                     </p>
                 </div>
 
-                {props.product.id && <CommentField productId={props.product.id} />}
+                {props.product.id && <CommentField productId={props.product.id} handleUpdateComments={handleShowComments} />}
 
                 {showComments ? 
                 <>
