@@ -1,7 +1,7 @@
 import ProductsList from 'src/components/products/ProductsList';
 import { useState, useEffect } from 'react';
 import { Product } from 'src/firebase/types/Product';
-import { getProductsByCategory, getProductsBySearch, getProductsWithLimit } from 'src/firebase/services/products';
+import { getNextProductsWithLimit, getProductsByCategory, getProductsBySearch, getProductsWithLimit } from 'src/firebase/services/products';
 import { useNavigate } from 'react-router-dom';
 import { Category } from 'src/firebase/types/Category';
 import { getCategories } from 'src/firebase/services/categories';
@@ -25,7 +25,7 @@ const ProductsPage = () => {
       const productDocuments = await getProductsWithLimit(3);
       setProducts(productDocuments);
       
-      let categoryDocuments = await getCategories();
+      const categoryDocuments = await getCategories();
       // categoryDocuments = categoryDocuments.sort((a, b) => a.value.localeCompare(b.value));
       setOptions(categoryDocuments); 
       console.log('options:', options);
@@ -72,6 +72,12 @@ const ProductsPage = () => {
       const productDocuments = await getProductsBySearch(searchInput);
       setProducts(productDocuments);
     }
+  }
+
+  const handleLoadMore = async () => {
+    console.log('last doc', products[products.length - 1]);
+    const productDocuments = await getNextProductsWithLimit(1, products[products.length - 1].creationDate);
+    setProducts([...products, ...productDocuments]);
   }
 
   return (
@@ -124,6 +130,10 @@ const ProductsPage = () => {
                   </button>
               </p>
           }
+          <button onClick={handleLoadMore}
+          className='p-4'>
+            Load more
+          </button>
         </div>
       )}
       <div className='fixed bottom-8 right-12 items-baseline'>

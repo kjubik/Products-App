@@ -1,4 +1,4 @@
-import { doc, getDoc, getDocs, setDoc, addDoc, collection, query, orderBy, where, limit } from "firebase/firestore";
+import { doc, getDoc, getDocs, setDoc, addDoc, collection, query, orderBy, where, limit, startAfter, Timestamp, FieldValue } from "firebase/firestore";
 import { db } from "../../App";
 import { Product } from "src/firebase/types/Product";
 
@@ -47,6 +47,20 @@ export const getProductsWithLimit = async (docLimit: number): Promise<Product[]>
         return products;
     } catch (error) {
         console.log('Failed to get products with limit of', docLimit, 'entries', error);
+        throw error;
+    }
+}
+
+export const getNextProductsWithLimit = async (docLimit: number, lastVisibleDoc: Timestamp | FieldValue): Promise<Product[]> => {
+    try {
+        const productsReference = collection(db, "products");
+        const q = query(productsReference, orderBy("creationDate", "desc"), where("isDeleted", "==", false), startAfter(lastVisibleDoc), limit(docLimit));
+        const querySnapshot = await getDocs(q);
+        const products: Product[] = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }) as Product);
+        console.log('Get next products with limit successful');
+        return products;
+    } catch (error) {
+        console.log('Failed to get next products with limit of', docLimit, 'entries', error);
         throw error;
     }
 }
