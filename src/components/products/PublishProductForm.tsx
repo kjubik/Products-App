@@ -4,6 +4,7 @@ import { Category } from "src/firebase/types/Category";
 import { Product } from "src/firebase/types/Product";
 import { getCategories } from "src/firebase/services/categories";
 import { useNavigate } from "react-router-dom";
+import Select from "react-tailwindcss-select";
 
 
 interface Props {
@@ -17,6 +18,7 @@ const PublishProductForm = ({ productData, setProductData, isNewProduct, buttonT
 
     const [descriptionLength, setDescriptionLength] = useState(productData.description.length);
     const [categories, setCategories] = useState<Category[]>([]);
+    const [selectedCategories, setSelectedCategories] = useState<any>([]);
 
     useEffect(() => {
         const fetchCategoriesFromFirestore = async () => {
@@ -45,22 +47,8 @@ const PublishProductForm = ({ productData, setProductData, isNewProduct, buttonT
         })
     }
 
-    const handleSelectCategory = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        const { value } = e.target;
-        if (productData.categories) {
-            setProductData({
-                ...productData,
-                categories: [...productData.categories, value]
-            })
-        } else {
-            setProductData({
-                ...productData,
-                categories: [value]
-            })
-        }
-    }
-
     const handlePublishPost = async () => {
+        productData.categories = selectedCategories.map((category: Category) => category.value);
         console.log(productData);
         if (isNewProduct) {
             await postProduct(productData);
@@ -92,12 +80,15 @@ const PublishProductForm = ({ productData, setProductData, isNewProduct, buttonT
                     <div className="w-full text-right text-sm text-slate-400">{descriptionLength}/200 characters</div>
                 </div>
 
-                <select name="categories" id="categories" placeholder="Select a category" multiple
-                onChange={handleSelectCategory}>
-                    {categories.map((category, index) => (
-                        <option key={index} value={category.name}>{category.name}</option>
-                    ))}
-                </select>
+                <Select 
+                    value={selectedCategories}
+                    onChange={setSelectedCategories}
+                    options={categories}
+                    isMultiple={true}
+                    primaryColor={'blue'}
+                    placeholder='Filter by category'
+                    isClearable={true}
+                />
                 
                 <button onClick={handlePublishPost} 
                 className="rounded-full bg-blue-500 text-white font-semibold 
