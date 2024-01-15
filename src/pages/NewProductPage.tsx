@@ -15,7 +15,6 @@ const NewProductPage = () => {
         creationDate: serverTimestamp(),
         creatorUserId: userId ? userId : '',
         creatorUsername: '',
-        creatorDisplayName: '',
         description: '',
         imageUrl: '',
         isDeleted: false,
@@ -29,7 +28,6 @@ const NewProductPage = () => {
             setNewProduct({
                 ...newProduct,
                 creatorUsername: userData.username,
-                creatorDisplayName: userData.displayName,
             })
         }
 

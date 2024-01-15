@@ -27,7 +27,6 @@ const CreateAccountPage = () => {
                 email: user.email,
                 username: username,
                 isAdmin: false,
-                displayName: username,
             }
             await postUser(userData);
 

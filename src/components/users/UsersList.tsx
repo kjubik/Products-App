@@ -8,9 +8,8 @@ const UsersList = ({users}: {users: User[]}) => {
             <table className="w-full">
                 <thead>
                     <tr>
-                        <th>User ID</th>
+                        {/* <th>User ID</th> */}
                         <th>Username</th>
-                        <th>Display Name</th>
                         <th>Email</th>
                         <th>Role</th>
                     </tr>
