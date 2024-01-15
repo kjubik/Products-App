@@ -32,11 +32,13 @@ const Navbar = () => {
         <>
         <nav className="w-full bg-slate-200 flex items-center align-center justify-between px-8 py-4">
             <h1 className="font-bold"><Link to="/">produkty app</Link></h1>
+            {isAuthed ?
             <ul className="flex gap-8">
                 <li><Link to="/products" className="text-blue-500 hover:text-blue-700 font-semibold">Products</Link></li>
                 <li><Link to="/profile" className="text-blue-500 hover:text-blue-700 font-semibold">Profile</Link></li>
                 {isAdmin && <li><Link to="/users" className="text-blue-500 hover:text-blue-700 font-semibold">Users</Link></li>}
-            </ul>
+            </ul> 
+            : <></>}
             {isAuthed ? <SignOutButton /> 
             : <>
             <div className="flex gap-4">
