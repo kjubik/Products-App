@@ -1,4 +1,3 @@
-import GoogleAuthButton from "../authentication/GoogleAuthButton";
 import SignOutButton from "../authentication/SignOutButton";
 import { useState, useEffect } from "react";
 import { onAuthStateChanged, getAuth } from "firebase/auth";
@@ -38,7 +37,17 @@ const Navbar = () => {
                 <li><Link to="/profile" className="text-blue-500 hover:text-blue-700 font-semibold">Profile</Link></li>
                 {isAdmin && <li><Link to="/users" className="text-blue-500 hover:text-blue-700 font-semibold">Users</Link></li>}
             </ul>
-            {isAuthed ? <SignOutButton /> : <GoogleAuthButton />}
+            {isAuthed ? <SignOutButton /> 
+            : <>
+            <div className="flex gap-4">
+                <Link to='/create-account' className="rounded-full bg-blue-500 hover:bg-blue-700 px-4 py-1 text-white font-semibold">
+                    Create Account
+                </Link>
+                <Link to='/sign-in' className="rounded-full bg-slate-400 hover:bg-slate-600 px-4 py-1 text-white font-semibold">
+                    Sign In
+                </Link>
+            </div>
+            </>}
         </nav>
         </>
     );

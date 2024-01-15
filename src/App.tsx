@@ -11,6 +11,8 @@ import { getAuth } from 'firebase/auth'
 import { getFirestore } from 'firebase/firestore'
 import UsersPage from './pages/UsersPage';
 import AdminRoutes from './components/navigation/AdminRoutes';
+import SignInPage from './pages/SignInPage';
+import CreateAccountPage from './pages/CreateAccountPage';
 
 
 const firebaseConfig = {
@@ -36,6 +38,8 @@ function App() {
         <Navbar />
         <Routes>
           <Route path='/' element={<HomePage />} />
+          <Route path='/create-account' element={<CreateAccountPage />} />
+          <Route path='/sign-in' element={<SignInPage />} />
           <Route element={<ProtectedRoutes />}>
             <Route path='/products' element={<ProductsPage />} />
             <Route path='/profile' element={<ProfilePage />} />
