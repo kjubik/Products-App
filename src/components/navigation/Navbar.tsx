@@ -31,7 +31,7 @@ const Navbar = () => {
     return (
         <>
         <nav className="w-full bg-slate-200 flex items-center align-center justify-between px-8 py-4">
-            <h1 className="font-bold"><Link to="/">produkty app</Link></h1>
+            <h1 className="font-bold"><Link to="/">Products App</Link></h1>
             {isAuthed ?
             <ul className="flex gap-8">
                 <li><Link to="/products" className="text-blue-500 hover:text-blue-700 font-semibold">Products</Link></li>
