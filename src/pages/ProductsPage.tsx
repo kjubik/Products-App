@@ -76,7 +76,7 @@ const ProductsPage = () => {
 
   const handleLoadMore = async () => {
     console.log('last doc', products[products.length - 1]);
-    const productDocuments = await getNextProductsWithLimit(1, products[products.length - 1].creationDate);
+    const productDocuments = await getNextProductsWithLimit(3, products[products.length - 1].creationDate);
     setProducts([...products, ...productDocuments]);
   }
 
