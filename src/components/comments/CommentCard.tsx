@@ -1,6 +1,7 @@
 import { ProductComment } from "src/firebase/types/ProductComment";
 import { convertTimestampToDate } from "src/firebase/utils/convertTimestampToDate";
 import { useState } from "react";
+import { getAuth } from "firebase/auth";
 
 
 interface CommentProps {
@@ -11,6 +12,8 @@ interface CommentProps {
 
 
 const CommentCard = (props: CommentProps) => {
+
+    const auth = getAuth();
 
     const [showEdit, setShowEdit] = useState(false);
     const [newDescription, setNewDescription] = useState(props.comment.description);
@@ -48,7 +51,7 @@ const CommentCard = (props: CommentProps) => {
                     {props.comment.creatorUsername}
                 </span>
                 <div className="flex gap-3 font-semibold">
-                    {!showEdit && <button onClick={handleEdit} className="text-slate-800/70 hover:text-slate-800">Edit</button>}
+                    {!showEdit && auth.currentUser && auth.currentUser.uid == props.comment.creatorUserId && <button onClick={handleEdit} className="text-slate-800/70 hover:text-slate-800">Edit</button>}
                     <button onClick={handleDelete} className="text-red-500/70 hover:text-red-500">Delete</button>
                 </div>
             </div>
