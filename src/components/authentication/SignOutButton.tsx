@@ -18,7 +18,13 @@ const SignOutButton = () => {
     };
 
   return (
-    <Button variant={'outline'} onClick={handleSignOut}>Sign Out</Button>
+    <Button 
+      variant={'outline'} 
+      onClick={handleSignOut}
+      className="gap-2"
+    >
+      Sign Out <span className="material-symbols-rounded text-lg">logout</span>
+    </Button>
   );
 };
 

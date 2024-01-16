@@ -67,13 +67,13 @@ const ProductsCard = (props: ProductCardProps) => {
                         {props.viewerId === props.product.creatorUserId && 
                             <a href={`/edit-product/${props.product.id}`}
                             className="text-slate-800/70 hover:text-slate-800">
-                                Edit
+                                <span className="material-symbols-rounded">edit</span>
                             </a>
                         }
                         {props.userIsAdmin &&
                             <button onClick={handleDelete}
                             className="text-red-500/70 hover:text-red-500">
-                                Delete
+                                <span className="material-symbols-rounded">delete</span>
                             </button>
                         }
                     </div>

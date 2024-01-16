@@ -83,7 +83,7 @@ const CommentInputField = (props: CommentInputFieldProps) => {
                 onClick={handleAddComment}
                 className=""
             >
-                Add
+                <span className="material-symbols-rounded">add</span>
             </button>
         </div> 
     </>
