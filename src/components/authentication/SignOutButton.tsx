@@ -4,18 +4,18 @@ import { Button } from "@/shadcn-ui/ui/button";
 
 const SignOutButton = () => {
 
-    const auth = getAuth();
+  const auth = getAuth();
 
-    const handleSignOut = () => {
-    signOut(auth)
-        .then(() => {
-            console.log("User signed out successfully");
-            window.location.reload();
-        })
-        .catch((error) => {
-            console.log("Error signing out:", error);
-        });
-    };
+  const handleSignOut = () => {
+  signOut(auth)
+      .then(() => {
+          console.log("User signed out successfully");
+          window.location.reload();
+      })
+      .catch((error) => {
+          console.log("Error signing out:", error);
+      });
+  };
 
   return (
     <Button 
