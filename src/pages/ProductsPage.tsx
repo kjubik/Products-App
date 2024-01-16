@@ -7,6 +7,8 @@ import { Category } from 'src/firebase/types/Category';
 import { getCategories } from 'src/firebase/services/categories';
 import { SelectValue } from 'react-tailwindcss-select/dist/components/type';
 import Select from 'react-tailwindcss-select';
+import { Button } from 'src/shadcn-ui/ui/button';
+import { Input } from 'src/shadcn-ui/ui/input';
 
 
 const ProductsPage = () => {
@@ -88,22 +90,19 @@ const ProductsPage = () => {
         <div className='flex flex-col justify-center items-center w-screen'>
           <span className='flex flex-col gap-2 w-full'>
             <div className='flex w-1/2 mx-auto'>
-              <input 
-                className='rounded-full border-2 border-slate-400 px-4 py-1 flex-grow mr-2'
+              <Input 
                 type='text'
                 placeholder='Search products'
                 value={searchInput}
                 onChange={(e) => setSearchInput(e.target.value)}
                 onKeyDown={(e) => {if (e.key === 'Enter') {handleSearch();}}}
               />
-              <button 
-                className='rounded-full bg-blue-500 text-white font-semibold 
-                px-4 py-1 flex items-center justify-around text-lg
-                shadow-md hover:bg-blue-700'
+              <Button 
+                variant='secondary'
                 onClick={handleSearch}
               >
                 Search
-              </button>
+              </Button>
             </div>
             <Select 
               value={selectedOptions}
@@ -138,12 +137,12 @@ const ProductsPage = () => {
         </div>
       )}
       <div className='fixed bottom-8 right-12 items-baseline'>
-        <button onClick={() => navigate("/new-product")}
-          className="rounded-full bg-blue-500 text-white font-semibold 
-          px-4 py-1 flex items-center justify-around text-lg
-          shadow-md hover:bg-blue-700">
-              Post product
-          </button>
+        <Button
+          variant='default' 
+          onClick={() => navigate("/new-product")}
+        >
+          Post product
+        </Button>
       </div>
     </>
   );

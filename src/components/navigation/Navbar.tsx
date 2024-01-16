@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { onAuthStateChanged, getAuth } from "firebase/auth";
 import { Link } from "react-router-dom";
 import { getAdminStatus } from "src/firebase/utils/getAdminStatus";
+import { buttonVariants } from "@/shadcn-ui/ui/button";
 
 
 const Navbar = () => {
@@ -42,12 +43,12 @@ const Navbar = () => {
             {isAuthed ? <SignOutButton /> 
             : <>
             <div className="flex gap-4">
-                <Link to='/create-account' className="rounded-full bg-blue-500 hover:bg-blue-700 px-4 py-1 text-white font-semibold">
-                    Create Account
-                </Link>
-                <Link to='/sign-in' className="rounded-full bg-slate-400 hover:bg-slate-600 px-4 py-1 text-white font-semibold">
-                    Sign In
-                </Link>
+            <Link to='/create-account' className={buttonVariants({ variant: "default" })}>
+                Create Account
+            </Link>
+            <Link to='/sign-in' className={buttonVariants({ variant: "secondary" })}>
+                Sign In
+            </Link>
             </div>
             </>}
         </nav>

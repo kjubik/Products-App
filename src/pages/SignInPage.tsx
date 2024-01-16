@@ -2,6 +2,8 @@ import GoogleAuthButton from "src/components/authentication/GoogleAuthButton";
 import { signInWithEmailAndPassword, getAuth, UserCredential } from "firebase/auth";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Input } from "@/shadcn-ui/ui/input";
+import { Button } from "src/shadcn-ui/ui/button";
 
 
 const SignInPage = () => {
@@ -29,17 +31,22 @@ const SignInPage = () => {
         <GoogleAuthButton />
         <p>or</p>
         <div className="flex flex-col gap-2">
-            <input 
-                type="email" 
-                placeholder="Email" 
+            <Input
+                type="email"
+                placeholder="Email"
                 onChange={(e) => setEmail(e.target.value)}
             />
-            <input 
-                type="password" 
-                placeholder="Password" 
+            <Input
+                type="password"
+                placeholder="Password"
                 onChange={(e) => setPassword(e.target.value)}
             />
-            <button onClick={handleSignIn}>Sign In</button>
+            <Button
+                variant="secondary" 
+                onClick={handleSignIn}
+            >
+                Sign In
+            </Button>
         </div>
     </div>
     );

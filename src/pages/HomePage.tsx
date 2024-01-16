@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { buttonVariants } from "@/shadcn-ui/ui/button";
 
 
 const HomePage = () => {
@@ -12,10 +13,10 @@ const HomePage = () => {
       </h1>
       <p>An account is required to use the app.</p>
       <div className="flex gap-4">
-        <Link to='/create-account' className="rounded-full bg-blue-500 hover:bg-blue-700 px-4 py-1 text-white font-semibold">
+        <Link to='/create-account' className={buttonVariants({ variant: "default" })}>
           Create Account
         </Link>
-        <Link to='/sign-in' className="rounded-full bg-slate-400 hover:bg-slate-600 px-4 py-1 text-white font-semibold">
+        <Link to='/sign-in' className={buttonVariants({ variant: "secondary" })}>
           Sign In
         </Link>
       </div>

@@ -18,7 +18,7 @@ const SignOutButton = () => {
     };
 
   return (
-    <Button onClick={handleSignOut}>Sign Out</Button>
+    <Button variant={'outline'} onClick={handleSignOut}>Sign Out</Button>
   );
 };
 

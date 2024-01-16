@@ -1,6 +1,7 @@
 import { User } from "src/firebase/types/User";
 import { useState } from "react";
 import { updateUser } from "src/firebase/services/users";
+import { TableCell, TableRow } from "src/shadcn-ui/ui/table";
 
 const UserTableRow = ({ user }: {user: User}) => {
 
@@ -14,13 +15,13 @@ const UserTableRow = ({ user }: {user: User}) => {
     }
 
     return (
-        <tr key={user.id}>
+        <TableRow key={user.id}>
             {/* <td>{user.id}</td> */}
-            <td>{user.username}</td>
-            <td>{user.email}</td>
-            <td>{userRole ? 'Admin' : 'User'}</td>
-            <td><button onClick={handleChangeRole}>{userRole ? 'Remove' : 'Upgrade'}</button></td>
-        </tr>
+            <TableCell>{user.username}</TableCell>
+            <TableCell>{user.email}</TableCell>
+            <TableCell>{userRole ? 'Admin' : 'User'}</TableCell>
+            <TableCell><button onClick={handleChangeRole}>{userRole ? 'Remove' : 'Upgrade'}</button></TableCell>
+        </TableRow>
     );
 };
 

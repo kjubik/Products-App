@@ -2,6 +2,7 @@ import { getAdditionalUserInfo, getAuth, GoogleAuthProvider, signInWithPopup } f
 import { User } from "src/firebase/types/User";
 import { postUser } from "../../firebase/services/users";
 import { useNavigate } from "react-router-dom";
+import { Button } from "src/shadcn-ui/ui/button";
 
 const GoogleAuthButton = () => {
   const auth = getAuth();
@@ -17,7 +18,6 @@ const GoogleAuthButton = () => {
         const newUser: User = {
           id: authResult.user.uid,
           email: authResult.user.email || '',
-          displayName: authResult.user.displayName || '',
           username: authResult.user.displayName || '',
           isAdmin: false,
         }
@@ -34,10 +34,12 @@ const GoogleAuthButton = () => {
   }
 
   return (
-    <button onClick={authWithGoogle}
-    className="rounded-full bg-blue-500 hover:bg-blue-700 px-4 py-1 text-white font-semibold">
+    <Button
+      variant="default" 
+      onClick={authWithGoogle}
+    >
       Continue with Google
-    </button>
+    </Button>
   );
 };
 
